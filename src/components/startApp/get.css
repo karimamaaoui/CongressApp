@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@700&display=swap');
+
+.get{
+  margin-top: 6%;
+  border:0;
+  padding: auto;
+  margin-left: 16%;
+  padding-right: 40%;
+  background-color: #8cda94;
+
+}
+
+.borderimg {
+  border-radius:  50px 15px 50px 15px
+}
+
+aside {
+  width: 45%;
+  padding-left: 15px;
+  padding-right: 5%;
+  margin-left: 15px;
+  margin-top: 10%;
+  float: right;
+}
+
+
+.text-center{
+  padding: 10%;
+  text-align: center;
+  color: rgb(243, 234, 234);
+  text-Transform: uppercase;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.background{
+  
+    background-image: url(../assets/wallpaper.jpg);
+    background-Size: cover;
+    height: 100vh;
+  }
+
+
+.title{
+  position: relative;
+  font-size: 6vw;
+  color:#D3E8D6;
+  -webkit-tet-strake:0.3vw #D3E8D6;
+  text-transform:uppercase ;
+  padding-top: 13%;
+  padding-left: 15%;
+}
+
+.title::before{
+  content: attr(data-text);
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: #8AAB8F;
+  -webkit-tet-stroke:0vw ;
+  border-right: 2px solid #f9f9fa;
+  overflow: hidden;
+  animation: animate 6s linear infinite;
+  padding-top: 13%;
+  padding-left: 15%;
+
+}
+
+@keyframes animate 
+{
+  0%,10%,100%
+  {
+    width: 0;
+
+  }
+  70%,90%
+  {
+    width: 100%;
+  }
+  
+}
+
+.body{
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+}
+
+.noRoute{
+  text-align: center;
+  padding-top: 22%;
+  color: white;
+}
