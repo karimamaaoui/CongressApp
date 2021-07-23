@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Navbar from './navbarList'
 import Footer from './Footer';
 import axios from 'axios';
+import NoRouteFound from '../startApp/noRouteFound';
+import {Link, Redirect} from 'react-router-dom';
 
 //const x = localStorage.getItem("users");
 //const lastname = localStorage.getItem("users");
@@ -23,7 +25,7 @@ export class Home extends Component {
                 Authorization: 'Bearer ' +localStorage.getItem('token')            }
                 
             };
-        axios.get('https://127.0.0.1:8000/api/users',config).then(
+        axios.get('https://127.0.0.1:8000/api/users/',config).then(
             res =>{
              //   console.log(res);
               //  console.log(lastname);
@@ -33,6 +35,7 @@ export class Home extends Component {
             const list = data['hydra:member'];
             
             // console.log(list);
+         
              this.setState({
                  lists:list
              })
@@ -50,43 +53,58 @@ export class Home extends Component {
 
     render() {
         //names=JSON.parse(localStorage.getItem("users"));
-        
+        const emails=window.localStorage.getItem('users');
+    
+        const emailuser = JSON.parse(emails);
+      // const redirectToUrl = <Redirect to="/login" />;
+        if(!emails )
+        {
+            return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+            //<NoRouteFound/>
+            //  {redirectToUrl}
+        }
+        else {
         return (
             <div>
-                    <div><Navbar/></div>
+
+                    <div><Navbar/>
+                    {emailuser.email}
+                    </div>
                     <div>
-                        <h1>Hello home</h1>
-                        
-                            <table border="5">  
-                                <thead>
-                                  <tr>
-                                    <th>Id</th>
-                                    <th></th>
+                        <h1> List of Congress</h1>
+                  
+                            <table  className="table table-striped table-dark able-responsive-md" >  
+                                <thead className="thead-dark ">
+                                  <tr >
+                                    <th>#</th>
                                     <th>Email</th>
-                                    <th></th>
                                     <th>firstName</th>
-                                    <th></th>
                                     <th>lastname</th>
+                                    <th></th>
+                                    <th></th>
                                     </tr>
                                     </thead>
                             {this.state.lists.map(
                             
                                     item=>{
                                         return(
-                                            <tbody>
+                                            
+                                            <tbody className="table-info">
 
-                                            <tr  key={item.id}>
-                                                <td>id : {item.id}</td>
-                                                <td></td>
-                                                <td>email :{item.email}</td>
-                                                <td></td>
-                                                <td>firstName : {item.firstName}</td>
-                                                <td></td>
-                                                <td>lastname: {item.lastName}</td>
+                                            <tr className="bg-light"  key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.firstName}</td>
+                                                <td>{item.lastName}</td>
+                                                <td>{item.email}</td>
+                                                <td><button className="btn btn-warning">Edit</button></td>
+                                                <td><button className="btn btn-danger">Remove</button></td>
+
                                             </tr>
                                             </tbody>
+                                            
 
                                         )
+
                                     }
                                 )
                             }
@@ -94,12 +112,15 @@ export class Home extends Component {
                         
                         <div>
             </div>
-                    </div>
+
+            
+                      </div>
+
                     <div><Footer/></div>
                 
             </div>
             
-        )
+        )}
     }
 }
 

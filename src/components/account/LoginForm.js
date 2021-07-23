@@ -72,6 +72,7 @@ class LoginForm extends Component {
         
           if (!this.state.password ||this.state.password.length < 6)
           {
+            
                 passwordError='password invalid'; 
                 
       
@@ -126,7 +127,7 @@ class LoginForm extends Component {
                     
                     <label >EMAIL</label>
                     <input type="email" name="email"  placeholder="enter address email" className="form-control" value={this.state.email} onChange={this.handleChange}/>
-                    <div className="error">
+                    <div className="alert alert-danger" role="alert">
 
                       {this.state.emailError}
 

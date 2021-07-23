@@ -4,6 +4,7 @@ import './home.css';
 import {Redirect} from 'react-router-dom';
 import React, { Component } from 'react'
 //import { Alert } from "bootstrap";
+import axios from 'axios';
 
 class NavbarList extends Component {
     constructor(props) {
@@ -14,13 +15,19 @@ class NavbarList extends Component {
       }
       signOut = () => {
         localStorage.removeItem("users");
+        axios.get('https://127.0.0.1:8000/logout/').then(
         this.setState({
           islogout: true
-        });
+        })
+
+        )
+        console.log("logout")
+
       };
     
     render() {
         if (this.state.islogout) {
+
             return <Redirect to="/" />;
           }
         return(
@@ -31,7 +38,7 @@ class NavbarList extends Component {
                                 Welcome
                             </Navbar.Brand>
                             <Nav  >
-    
+                            <Nav.Link href="/profile">Profile</Nav.Link >    
                             <Nav.Link href="#footer">About Us</Nav.Link >
                             <Nav.Link  href="/" >Congres</Nav.Link >
                             <Nav.Link href="/" onClick={this.signOut}>Logout</Nav.Link >

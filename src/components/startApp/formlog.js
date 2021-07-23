@@ -22,6 +22,7 @@ const validation = ({ error, ...rest }) => {
 
     Object.values(rest).forEach(val => {
         if (val === null) {
+            
             checkValidation = false
         } else {
             checkValidation = true
@@ -68,12 +69,20 @@ class LoginForm extends Component {
              this.setState ({    
                 islogged: true,
                 message: 'Please wait...'
-
           });
           console.log(this.state.message);
-              this.props.history.push('/home');
-                localStorage.setItem('users',JSON.stringify(data));
-            
+          if (this.state.islogged===true)
+          {
+            this.props.history.push('/home');
+            localStorage.setItem('users',JSON.stringify(data));
+
+        
+          }
+          else {
+            this.props.history.push('/login');
+
+          }
+              
           })
           .catch(err=>{
            
@@ -126,7 +135,7 @@ class LoginForm extends Component {
                     <div className="form-group"></div>
                 <div >
 
-                    <form  onSubmit={this.onFormSubmit}>
+                    <form  onSubmit={this.onFormSubmit } >
                        
                        
                         <div className="form-group mb-3">
@@ -138,7 +147,9 @@ class LoginForm extends Component {
                                 className={error.email.length > 0 ? "is-invalid form-control" : "form-control"}
                                 onChange={this.formObject}/>
                                 {error.email.length > 0 && (
-                                    <span className="invalid-feedback">{error.email}</span>
+                                <div className="alert alert-danger" role="alert">
+                                     {error.email}
+                                    </div>
                                 )}
                         </div>
 
@@ -152,12 +163,16 @@ class LoginForm extends Component {
                                 onChange={this.formObject}/>
 
                                 {error.password.length > 0 && (
-                                    <span className="invalid-feedback">{error.password}</span>
+                                <div className="alert alert-danger" role="alert">
+
+                                        {error.password}
+                                    </div>
                                 )}
                         </div>
 
                         <div className="d-grid mt-3">
-                        <input type="submit" value="submit" className="submit"   />
+                   
+                        <input type="submit" value="submit" className="submit" />
                         </div>
                     </form>
                     <br/>
