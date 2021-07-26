@@ -38,6 +38,8 @@ class LoginForm extends Component {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
+
             email: '',
             password: '',
             islogged: false,

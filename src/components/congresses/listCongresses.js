@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
-import Navbar from './navbarList'
-import Footer from './Footer';
+import Navbar from '../home/navbarList';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 
-//const x = localStorage.getItem("users");
-//const lastname = localStorage.getItem("users");
-let idUser ;
-export class Home extends Component {
+export class ListCongresses extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            lists:[],
-            currentUserId :'',
+            listsCong:[],
+            lists:[]
         };
     }
 
-    
+  
     componentDidMount()
     {
         const config={
@@ -24,27 +20,20 @@ export class Home extends Component {
                 Authorization: 'Bearer ' +localStorage.getItem('token')            }
                 
             };
-        axios.get('https://127.0.0.1:8000/api/users/',config).then(
+        axios.get('https://127.0.0.1:8000/api/congresses/',config).then(
             res =>{
-             //   console.log(res);
-              //  console.log(lastname);
             const data = res.data;
-              //console.log(data);
-            //const lastname = localStorage.getItem("users");
+            
             const list = data['hydra:member'];
-            
-            const list3 = data['@id'];
-           
-            
-            console.log('lsit 3');
-
-            console.log(list3)
-            // console.log(list);
+            const listID =data['@id'];
+            console.log(listID)
          
              this.setState({
-                 lists:list
+                 listsCong:list
              })
-             console.log(this.state.lists)
+             console.log("list congress")
+
+             console.log(this.state.listsCong)
 
             },
             err=>{
@@ -57,64 +46,58 @@ export class Home extends Component {
     }
 
     render() {
-        //names=JSON.parse(localStorage.getItem("users"));
         const emails=window.localStorage.getItem('users');
     
         const emailuser = JSON.parse(emails);
-      // const redirectToUrl = <Redirect to="/login" />;
-        if(!emails )
-        {
-            return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
-            //<NoRouteFound/>
-            //  {redirectToUrl}
-        }
-        else {
+        let userId;
         return (
             <div>
 
                     <div><Navbar/>
-                    {emailuser.email}
                     </div>
                     <div>
-                        <h1> List </h1>
+                        <h1> List of Congress</h1>
                   
                             <table  className="table table-striped table-dark able-responsive-md" >  
                                 <thead className="thead-dark ">
                                   <tr >
                                     <th>#</th>
-                                    <th>Email</th>
-                                    <th>firstName</th>
-                                    <th>lastname</th>
+                                    <th>title</th>
+                                    <th>description</th>
+                                    <th>date</th>
+                                    <th>userId</th>
                                     <th></th>
                                     <th></th>
                                     </tr>
                                     </thead>
-                            {this.state.lists.map(
+                            {this.state.listsCong.map(
                             
                                     item=>{
                                         return(
-                                            
                                             <tbody className="table-info">
 
                                             <tr className="bg-light"  key={item.id}>
                                                 <td>{item.id}</td>
-                                                <td>{item.firstName}</td>
-                                                <td>{item.lastName}</td>
-                                                <td>{item.email}</td>
-                                                <td> idUser{idUser=item.id}</td>
-
+                                                <td>{item.title}</td>
+                                                <td>{item.description}</td>
+                                                <td>{item.createdAt}</td>
+                                                <td>userId {userId=item.userId} </td>
                                                 <td><button className="btn btn-warning">Edit</button></td>
                                                 <td><button className="btn btn-danger">Remove</button></td>
+                                                <td>
 
+                                                </td>
                                             </tr>
                                             </tbody>
-                                            
 
                                         )
 
                                     }
+                                    
                                 )
+                                
                             }
+                            
                             </table>
                         
                         <div>
@@ -123,12 +106,11 @@ export class Home extends Component {
             
                       </div>
 
-                    <div><Footer/></div>
                 
             </div>
             
-        )}
+        )
     }
 }
 
-export default  Home;
+export default  ListCongresses;
