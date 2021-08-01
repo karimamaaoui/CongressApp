@@ -40,7 +40,7 @@ class NavbarList extends Component {
                             <Nav  >
                             <Nav.Link href="/profile">Profile</Nav.Link >    
                             <Nav.Link href="#footer">About Us</Nav.Link >
-                            <Nav.Link  href="/" >Congres</Nav.Link >
+                            <Nav.Link  href="/home" >Congresses</Nav.Link >
                             <Nav.Link href="/" onClick={this.signOut}>Logout</Nav.Link >
     
                             </Nav>

@@ -41,19 +41,19 @@ class UserProfile extends Component{
     }
  
     render(){
+        let userID;
         const emails=window.localStorage.getItem('users');
-    
-        const emailuser = JSON.parse(emails);
 
+        const emailuser = JSON.parse(emails);
         return(
             <div>
          <div><Navbar/> </div>
         {this.state.lists.map(
                             
             item=>{
+
                 if (item.email===emailuser.email)
         return(
-
             <div >
                 <p  key={item.id}>
                 <div className="wrapper">
@@ -75,7 +75,15 @@ class UserProfile extends Component{
               <div className="data">
                     <h4>Email</h4>
                     <p>{item.email}</p>
+                    <p hidden
+                    
+                    >{userID=item.id}
+                    
+                    </p>
+                    {localStorage.setItem('userId',userID)}
+
                  </div>
+                 
                  
               <div >
                     <input type="submit" value="edit" className="submit" />
@@ -95,8 +103,11 @@ class UserProfile extends Component{
     
     )
     
-}
-</div>)
+        }
+        
+        </div>
+        
+        )
     }
     }
 export default UserProfile;

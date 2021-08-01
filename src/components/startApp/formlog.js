@@ -38,8 +38,7 @@ class LoginForm extends Component {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
-
+            
             email: '',
             password: '',
             islogged: false,
@@ -68,6 +67,7 @@ class LoginForm extends Component {
           .then(res=>{
               console.log(res);
              localStorage.setItem('token',res.data.token);
+
              this.setState ({    
                 islogged: true,
                 message: 'Please wait...'

@@ -7,6 +7,8 @@ import LoginForm from './startApp/formlog';
 import NoRouteFound from './startApp/noRouteFound';
 import Profile from './account/userProfile';
 import ListCongres from './congresses/listCongresses';
+import AddCongresses from './congresses/addCongresses';
+import Edit from './congresses/editCongresses';
 
 
 const Routes = () => {
@@ -23,6 +25,8 @@ const Routes = () => {
             <Route exact  path='/home' component={Home}/> 
             <Route exact  path='/profile' component={Profile}/>   
             <Route exact  path='/listCongresses' component={ListCongres}/>   
+            <Route exact  path='/add' component={AddCongresses}/>   
+            <Route exact  path='/edit/:id' component={Edit}/>   
 
             <Route exact  path='/*' component={NoRouteFound}/>  
 

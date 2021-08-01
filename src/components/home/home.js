@@ -1,134 +1,161 @@
 import React, { Component } from 'react'
-import Navbar from './navbarList'
-import Footer from './Footer';
+import Navbar from '../home/navbarList';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-//const x = localStorage.getItem("users");
-//const lastname = localStorage.getItem("users");
-let idUser ;
-export class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            lists:[],
-            currentUserId :'',
-        };
-    }
-
+  
+  export class Home extends Component {
     
-    componentDidMount()
-    {
-        const config={
-            headers:{
-                Authorization: 'Bearer ' +localStorage.getItem('token')            }
-                
+        constructor(props) {
+            super(props);
+            this.state = {
+                listsCong:[],
+                lists:[],
+                congresid:'',
             };
-        axios.get('https://127.0.0.1:8000/api/users/',config).then(
-            res =>{
-             //   console.log(res);
-              //  console.log(lastname);
-            const data = res.data;
-              //console.log(data);
-            //const lastname = localStorage.getItem("users");
-            const list = data['hydra:member'];
-            
-            const list3 = data['@id'];
-           
-            
-            console.log('lsit 3');
-
-            console.log(list3)
-            // console.log(list);
-         
-             this.setState({
-                 lists:list
-             })
-             console.log(this.state.lists)
-
-            },
-            err=>{
-                console.log(err)
-                
-            }
-
-        )
-
-    }
-
-    render() {
-        //names=JSON.parse(localStorage.getItem("users"));
-        const emails=window.localStorage.getItem('users');
-    
-        const emailuser = JSON.parse(emails);
-      // const redirectToUrl = <Redirect to="/login" />;
-        if(!emails )
-        {
-            return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
-            //<NoRouteFound/>
-            //  {redirectToUrl}
         }
-        else {
-        return (
-            <div>
+    
+        handleUpdate(id)
+        {
+            this.props.history.push(`/edit/${id}`);
 
-                    <div><Navbar/>
-                    {emailuser.email}
-                    </div>
-                    <div>
-                        <h1> List </h1>
-                  
-                            <table  className="table table-striped table-dark able-responsive-md" >  
-                                <thead className="thead-dark ">
-                                  <tr >
-                                    <th>#</th>
-                                    <th>Email</th>
-                                    <th>firstName</th>
-                                    <th>lastname</th>
-                                    <th></th>
-                                    <th></th>
-                                    </tr>
-                                    </thead>
-                            {this.state.lists.map(
-                            
-                                    item=>{
-                                        return(
-                                            
-                                            <tbody className="table-info">
+        }
 
-                                            <tr className="bg-light"  key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.firstName}</td>
-                                                <td>{item.lastName}</td>
-                                                <td>{item.email}</td>
-                                                <td> idUser{idUser=item.id}</td>
-
-                                                <td><button className="btn btn-warning">Edit</button></td>
-                                                <td><button className="btn btn-danger">Remove</button></td>
-
-                                            </tr>
-                                            </tbody>
-                                            
-
-                                        )
-
-                                    }
-                                )
-                            }
-                            </table>
-                        
-                        <div>
-            </div>
-
-            
-                      </div>
-
-                    <div><Footer/></div>
+    
+            handleDelete (id){
                 
-            </div>
-            
-        )}
-    }
-}
+            const config={
+                headers:{
+                    Authorization: 'Bearer ' +localStorage.getItem('token')            }
+                    
+                };
+                axios.delete(`https://127.0.0.1:8000/api/congres/${id}`,config)
+                .then(res => {
+                    console.log(res.data);
+                    alert("you really want at delete this");
+                    const lists=this.state.lists.filter(item =>item.id !==id);
+                    this.setState({
+                        lists
+                    });
+                  //  console.log(res);
+                   // console.log(res.data);
+                  }).catch(err=>{
+               
+                   
+                    console.log(err)
+                  })
+                
+            }  
+          
+    
+    
+    
+        componentDidMount()
+        {
+            const config={
+                headers:{
+                    Authorization: 'Bearer ' +localStorage.getItem('token')            }
+                    
+                };
+            axios.get('https://127.0.0.1:8000/api/congres/',config).then(
+                res =>{
+                const data = res.data;
+                
+                const list = data['hydra:member'];
+             //   const listID =data['@id'];
+             //   console.log(listID)
+             
+                 this.setState({
+                     listsCong:list
+                 })
+                 console.log("list congress")
+    
+                 console.log(this.state.listsCong)
+                
+                },
+                err=>{
+                    console.log(err)
+                    
+                }
+    
+            )
+    
+        }
+    
+        render() {
+    
+         //   const emails=window.localStorage.getItem('users');
+        
+            //const emailuser = JSON.parse(emails);
+            //const userIdLocal =window.localStorage.getItem('userId');
+            return (
+                <div>
+    
+                        <div><Navbar/>
+                        </div>
+                        <div>
+                            <h1> List of Congress</h1>
+                            <Link to ="/add">
+    
+                            <button className="btn btn-primary"  >Add </button>
+                            </Link>
+                                <table  className="table table-striped table-dark able-responsive-md" >  
+                                    <thead className="thead-dark ">
+                                      <tr >
+                                        
+                                        <th>title</th>
+                                        <th>description</th>
+                                        <th>date</th>
+                                        <th hidden>userId</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        </tr>
+                                        </thead>
+                                {this.state.listsCong.map(
+                                
+                                        item=>{
+                                            
+                                            return(
+                                                <tbody className="table-info">
+    
+                                                <tr className="bg-light"  key={item.id}>
+                                                    <td>{item.title}</td>
+                                                    <td>{item.description}</td>
+                                                    <td>{item.createdAt}</td>
+                                                    
+                                                    <td><button className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)} >Edit</button></td>
+                                                    <td><button className="btn btn-danger" onClick={ () => this.handleDelete(item.id)}>Remove</button></td>
+                                                    <td>
+    
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+    
+                                            )
+                                        }
+    
+                                        
+                                        
+                                    )
+                                    
+                                }
+                                
+                                </table>
+                          
+                            <div>
+                </div>
+    
+                
+                          </div>
+    
+                    
+                </div>
+                
+            )
+        }
+    
+  }
+    
 
 export default  Home;
