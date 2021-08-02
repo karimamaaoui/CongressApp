@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Navbar from '../home/navbarList';
+import {Link} from 'react-router-dom';
 
 
 const initialState ={
@@ -75,8 +77,22 @@ export class AddCongresses extends Component {
       }
       
     render() {
+      const emails=window.localStorage.getItem('users');
+      const emailuser = JSON.parse(emails);
+    // const redirectToUrl = <Redirect to="/login" />;
+      if(!emails )
+      {
+          return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+          //<NoRouteFound/>
+          //  {redirectToUrl}
+      }
+      else {
+    
         return (
+
             <div>
+                  <div><Navbar/> </div>
+
                 <form  onSubmit={this.handleSubmit } >
                 
                 <label className="mb-2">Title</label>
@@ -101,7 +117,7 @@ export class AddCongresses extends Component {
                 </form>
             </div>
         )
-    }
+    }}
 }
 
 export default AddCongresses

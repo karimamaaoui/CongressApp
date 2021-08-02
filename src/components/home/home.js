@@ -84,10 +84,17 @@ import { Link } from "react-router-dom";
     
         render() {
     
-         //   const emails=window.localStorage.getItem('users');
-        
-            //const emailuser = JSON.parse(emails);
-            //const userIdLocal =window.localStorage.getItem('userId');
+            const emails=window.localStorage.getItem('users');
+            const emailuser = JSON.parse(emails);
+          // const redirectToUrl = <Redirect to="/login" />;
+            if(!emails )
+            {
+                return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+                //<NoRouteFound/>
+                //  {redirectToUrl}
+            }
+            else {
+           
             return (
                 <div>
     
@@ -152,7 +159,7 @@ import { Link } from "react-router-dom";
                     
                 </div>
                 
-            )
+            )}
         }
     
   }

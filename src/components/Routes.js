@@ -9,7 +9,7 @@ import Profile from './account/userProfile';
 import ListCongres from './congresses/listCongresses';
 import AddCongresses from './congresses/addCongresses';
 import Edit from './congresses/editCongresses';
-
+import UpdateProfile from './account/updateProfile';
 
 const Routes = () => {
     
@@ -24,6 +24,8 @@ const Routes = () => {
             <Route exact  path='/login' component={LoginForm}/>  
             <Route exact  path='/home' component={Home}/> 
             <Route exact  path='/profile' component={Profile}/>   
+            <Route exact  path='/update' component={UpdateProfile}/>   
+
             <Route exact  path='/listCongresses' component={ListCongres}/>   
             <Route exact  path='/add' component={AddCongresses}/>   
             <Route exact  path='/edit/:id' component={Edit}/>   
