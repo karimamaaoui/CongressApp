@@ -127,7 +127,7 @@ class RegisterForm extends Component {
         const { error } = this.state;
 
         return (
-              
+              <div className="scroll">
             <div className="container">
                 <div className="login-register-wrapper">
                     <div className="nav-buttons">
@@ -147,7 +147,10 @@ class RegisterForm extends Component {
                                 onChange={this.formObject}/>
 
                                 {error.firstName.length > 0 && (
-                                    <span className="invalid-feedback">{error.firstName}</span>
+                                       <div className="alert alert-danger" role="alert">
+                                     {error.firstName}
+                                    </div>
+                             
                                 )}
                         </div>
 
@@ -161,7 +164,10 @@ class RegisterForm extends Component {
                                 onChange={this.formObject}/>
 
                                 {error.lastName.length > 0 && (
-                                    <span className="invalid-feedback">{error.lastName}</span>
+                                    <div className="alert alert-danger" role="alert">
+                                    {error.lastName}
+                                    </div>
+
                                 )}
                         </div>
 
@@ -175,7 +181,10 @@ class RegisterForm extends Component {
                                 className={error.email.length > 0 ? "is-invalid form-control" : "form-control"}
                                 onChange={this.formObject}/>
                                 {error.email.length > 0 && (
-                                    <span className="invalid-feedback">{error.email}</span>
+                                       <div className="alert alert-danger" role="alert">
+                                       {error.email}
+                                      </div>
+                               
                                 )}
                         </div>
 
@@ -189,7 +198,10 @@ class RegisterForm extends Component {
                                 onChange={this.formObject}/>
 
                                 {error.password.length > 0 && (
-                                    <span className="invalid-feedback">{error.password}</span>
+                                      <div className="alert alert-danger" role="alert">
+                                      {error.password}
+                                     </div>
+                              
                                 )}
                         </div>
 
@@ -200,15 +212,15 @@ class RegisterForm extends Component {
                     <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
-                    <Link to='/register'>
-                        Register here
+                    <Link to='/login'>
+                        Login here
                     </Link>
                     </div>
 
                 </div>
             </div>
 
-            </div>
+            </div>            </div>
         );
     }
 }

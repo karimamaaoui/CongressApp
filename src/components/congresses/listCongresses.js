@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {Card,Button} from 'react-bootstrap'
 //const x = localStorage.getItem("users");
 //const lastname = localStorage.getItem("users");
-let idUser ;
 export class ListCongresses extends Component {
     constructor(props) {
         super(props);
@@ -56,15 +55,11 @@ export class ListCongresses extends Component {
     }
 
     render() {
-        //names=JSON.parse(localStorage.getItem("users"));
         const emails=window.localStorage.getItem('users');
         const emailuser = JSON.parse(emails);
-      // const redirectToUrl = <Redirect to="/login" />;
         if(!emails )
         {
             return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
-            //<NoRouteFound/>
-            //  {redirectToUrl}
         }
         else {
         return (
@@ -99,7 +94,7 @@ export class ListCongresses extends Component {
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
                                                 <td>{item.email}</td>
-                                                <td> idUser {idUser=item.id}</td>
+                                                <td>  {item.id}</td>
 
                                                 <td><button className="btn btn-warning">Edit</button></td>
                                                 <td><button className="btn btn-danger">Remove</button></td>

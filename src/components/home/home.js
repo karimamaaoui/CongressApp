@@ -37,8 +37,6 @@ import { Link } from "react-router-dom";
                     this.setState({
                         lists
                     });
-                  //  console.log(res);
-                   // console.log(res.data);
                   }).catch(err=>{
                
                    
@@ -62,8 +60,6 @@ import { Link } from "react-router-dom";
                 const data = res.data;
                 
                 const list = data['hydra:member'];
-             //   const listID =data['@id'];
-             //   console.log(listID)
              
                  this.setState({
                      listsCong:list
@@ -85,13 +81,9 @@ import { Link } from "react-router-dom";
         render() {
     
             const emails=window.localStorage.getItem('users');
-            const emailuser = JSON.parse(emails);
-          // const redirectToUrl = <Redirect to="/login" />;
             if(!emails )
             {
                 return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
-                //<NoRouteFound/>
-                //  {redirectToUrl}
             }
             else {
            
@@ -105,7 +97,10 @@ import { Link } from "react-router-dom";
                             <Link to ="/add">
     
                             <button className="btn btn-primary"  >Add </button>
+                            <br/>
+
                             </Link>
+                            <br/>
                                 <table  className="table table-striped table-dark able-responsive-md" >  
                                     <thead className="thead-dark ">
                                       <tr >
@@ -140,9 +135,7 @@ import { Link } from "react-router-dom";
                                                 </tbody>
     
                                             )
-                                        }
-    
-                                        
+                                        }    
                                         
                                     )
                                     

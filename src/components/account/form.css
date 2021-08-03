@@ -14,7 +14,7 @@ html,body {
 }
 .login-register-wrapper{
 
-    height: 560px;
+    height: 720;
     width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -27,7 +27,7 @@ html,body {
 
   }
 .register-wrapper{
-    height: 710px;
+    height: 720px;
     width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -40,7 +40,50 @@ html,body {
 
 
 }
+#editbtn {
+    text-align: center;
+    margin-left: 40%; 
+}
+
+#addbtn{
+    text-align: center;
+    margin-left: 40%;
+}
+.editH1{
+    text-align: center;
+}
+.add-congresses--wrapper{
+   
+    height: 720;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:0 2em;
+    border-radius: 5px;
+    overflow: hidden;
+    color:white;
+    background:transparent
+          
+    
+}
   
+
+.edit-congresses--wrapper{
+   
+    height: 720;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:0 2em;
+    border-radius: 5px;
+    overflow: hidden;
+    color:white;
+    background:transparent
+      
+    
+    
+    
+}
 
 
 
@@ -166,5 +209,5 @@ button.active {
 }
 
 .scroll{
-    overflow: scroll;
+    overflow: auto;
 }

@@ -39,6 +39,12 @@ class UserProfile extends Component{
         )
 
     }
+    handleUpdate(id)
+    {
+        this.props.history.push(`/update/${id}`);
+
+    }
+
  
     render(){
         let userID;
@@ -86,7 +92,8 @@ class UserProfile extends Component{
                  
                  
               <div >
-                    <input type="submit" value="edit" className="submit" />
+
+                    <input type="submit" value="edit" className="submit"  onClick={ () => this.handleUpdate(item.id)}/>
                  </div>
               </div>
                         </div>

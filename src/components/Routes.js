@@ -3,7 +3,7 @@ import React  from 'react'
 import GetStarted from './startApp/getStarted';
 import Register from './account/registerForm';
 import Home from './home/home';
-import LoginForm from './startApp/formlog';
+import LoginForm from './account/formLogin';
 import NoRouteFound from './startApp/noRouteFound';
 import Profile from './account/userProfile';
 import ListCongres from './congresses/listCongresses';
@@ -24,8 +24,7 @@ const Routes = () => {
             <Route exact  path='/login' component={LoginForm}/>  
             <Route exact  path='/home' component={Home}/> 
             <Route exact  path='/profile' component={Profile}/>   
-            <Route exact  path='/update' component={UpdateProfile}/>   
-
+            <Route exact  path='/update/:id' component={UpdateProfile}/>   
             <Route exact  path='/listCongresses' component={ListCongres}/>   
             <Route exact  path='/add' component={AddCongresses}/>   
             <Route exact  path='/edit/:id' component={Edit}/>   

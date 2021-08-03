@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Navbar from '../home/navbarList';
 import {Link} from 'react-router-dom';
+import '../account/form.css';
 
+import {Form } from 'react-bootstrap'
 
 const initialState ={
     title:'',
@@ -34,13 +36,8 @@ export class AddCongresses extends Component {
     handleSubmit =event=>
     {
       event.preventDefault();
- 
-        //this.props.history.push('/home');
+
         console.log(this.state);
-      //  localStorage.setItem('users',JSON.stringify(this.state))
-
-      //const userId=localStorage.getItem('userId');
-
       const data={
         title:this.state.title,
         description:this.state.description,
@@ -78,13 +75,9 @@ export class AddCongresses extends Component {
       
     render() {
       const emails=window.localStorage.getItem('users');
-      const emailuser = JSON.parse(emails);
-    // const redirectToUrl = <Redirect to="/login" />;
       if(!emails )
       {
           return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
-          //<NoRouteFound/>
-          //  {redirectToUrl}
       }
       else {
     
@@ -92,29 +85,48 @@ export class AddCongresses extends Component {
 
             <div>
                   <div><Navbar/> </div>
+                  <div className="add-congresses--wrapper">
+                  <h1>Add new Congresses</h1>
+                  <br/>
+                  <div className="form-group"></div>
 
                 <form  onSubmit={this.handleSubmit } >
-                
+                <div className="form-group mb-3">
+
                 <label className="mb-2">Title</label>
                     <input type="text" required name="title"  onChange={this.handleChange}/>
                     <div className=" error" > 
                     {this.state.titleError}
                     </div>
+                    <Form.Group className="mb-3" >
          
                     <label className="mb-2">description</label>
-                    <input type="textarea" name="description" required onChange={this.handleChange}  />
+                    <Form.Control as="textarea" rows={3} name="description" required onChange={this.handleChange}/>
+
                     <div className=" error" > 
                     {this.state.descriptionError}
                     </div>
+
+  </Form.Group>
+
+
                     <label className="mb-2">date</label>
-                    <input type="text" name="createdAt" required onChange={this.handleChange}  />
+                    <input type="datetime-local" name="createdAt" required onChange={this.handleChange}  />
                     <div className=" error" > 
                     {this.state.createdAtError}
                     </div>
-                   
-                     <input type="submit" value="submit" />
+                    <div className="d-grid mt-3">
 
+                     </div>
+                     <button type="submit"  className="btn btn-primary"  id="addbtn" >
+                       Add 
+                       </button>
+                   
+                </div>
                 </form>
+            </div>
+            
+       
             </div>
         )
     }}

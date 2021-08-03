@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 //import wallpaper from '../assets/wallpaper.jpg';
 import './form.css';
 import {Link} from 'react-router-dom';
@@ -163,4 +163,4 @@ class LoginForm extends Component {
         )
     }
 }
-export default LoginForm;
+export default LoginForm;*/

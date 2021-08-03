@@ -8,10 +8,10 @@ import ControllerCarousel from './ControllerCaroussel';
 
 
 export class GetStarted extends React.Component {
-
    
 
     render() {
+
        return (
            <div className="body">
             <div className="background">

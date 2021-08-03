@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Navbar from '../home/navbarList';
 import { Link } from "react-router-dom";
+import {Form } from 'react-bootstrap'
+import '../account/form.css';
+
+
 
 export class EditCongresses extends Component {
     constructor(props) {
@@ -68,10 +72,10 @@ export class EditCongresses extends Component {
                    congres: res.data
                 })
                 console.log('congresses => ' + JSON.stringify(congres));
+                this.props.history.push('/home');
 
-               // console.log(this.state.congres)
+
                 
-           // console.log('congresses => ' + JSON.stringify(congres));
             }) .catch(err=>{
                 console.log(err)
             })
@@ -96,29 +100,34 @@ export class EditCongresses extends Component {
 
                     <div><Navbar/>
                     </div>
-                    <div>
-                        <h1> List of Congress </h1>
+                    <div className="edit-congresses--wrapper">
+                        <h1 className="editH1"> Edit  Congresses </h1>
+                        <div className="add-wrapper">
+                        <div className="form-group"></div>
 
                 <form  onSubmit={this.handleEdit } >
-                
+                <div className="form-group mb-3">
+
                 <label className="mb-2">Title</label>
                     <input type="text" required name="title" defaultValue={this.state.title}  onChange={(e)=>this.setState({title:e.target.value})} />
                
-         
-                    <label className="mb-2">description</label>
-                    <input type="textarea" name="description" required defaultValue={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}  />
-                    <label className="mb-2">date</label>
-                    <input type="text" name="createdAt" required defaultValue={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
-                   
-                     <input type="submit" value="submit" />
+                    <Form.Group className="mb-3" >
 
+                    <label className="mb-2">description</label>
+                    <Form.Control as="textarea" rows={3} name="description" required defaultValue={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}/>
+
+                    </Form.Group>
+                    <label className="mb-2">date</label>
+                    <input type="datetime-local" name="createdAt" required defaultValue={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
+                     <button type="submit"   id="editbtn" className="btn btn-primary" >Update </button>
+                </div>
                 </form>
 
 
 
                             </div>
 
-            </div>
+            </div></div>
             
         )
     }}
