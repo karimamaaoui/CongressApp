@@ -178,6 +178,13 @@ class LoginForm extends Component {
                         </div>
                     </form>
                     <br/>
+                    <div >
+                    <Link to='/register'>
+                    Forgot Password     
+                    </Link>
+                    </div>
+
+                    <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
                     <Link to='/register'>
