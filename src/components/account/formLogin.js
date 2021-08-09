@@ -65,7 +65,7 @@ class LoginForm extends Component {
       console.log(data)
       axios.post('https://127.0.0.1:8000/api/login',data)
           .then(res=>{
-              console.log(res);
+              console.log(res.data);
              localStorage.setItem('token',res.data.token);
 
              this.setState ({    
@@ -179,7 +179,7 @@ class LoginForm extends Component {
                     </form>
                     <br/>
                     <div >
-                    <Link to='/register'>
+                    <Link to='/forgotPassword'>
                     Forgot Password     
                     </Link>
                     </div>

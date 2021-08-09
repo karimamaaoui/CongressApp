@@ -10,6 +10,9 @@ import ListCongres from './congresses/listCongresses';
 import AddCongresses from './congresses/addCongresses';
 import Edit from './congresses/editCongresses';
 import UpdateProfile from './account/updateProfile';
+import ForgotPassword from './resetPassword/fogotPassword';
+import ForgotEM from './resetPassword/forgotPass';
+
 
 const Routes = () => {
     
@@ -27,7 +30,10 @@ const Routes = () => {
             <Route exact  path='/update/:id' component={UpdateProfile}/>   
             <Route exact  path='/listCongresses' component={ListCongres}/>   
             <Route exact  path='/add' component={AddCongresses}/>   
-            <Route exact  path='/edit/:id' component={Edit}/>   
+            <Route exact  path='/edit/:id' component={Edit}/> 
+              
+            <Route exact  path='/forgotPassword' component={ForgotEM}/> 
+            <Route exact  path='/reset-password/:id' component={ForgotPassword}/> 
 
             <Route exact  path='/*' component={NoRouteFound}/>  
 
