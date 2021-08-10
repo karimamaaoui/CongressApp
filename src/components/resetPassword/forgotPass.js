@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-
+import './reset.css'
 export class forgotPass extends Component {
 
 
@@ -64,9 +64,14 @@ export class forgotPass extends Component {
             <div>
 
              <div className="container">
+
+             <div className="reset-wrapper">
+             <div className="form-group"></div>
+
             <form  onSubmit={this.onFormSubmit }> 
+            <div >
             <div className="form-group mb-3">
-                <br/>
+
                             <label className="mb-2">Enter your address e-mail</label>
                             <input
                                 required
@@ -78,9 +83,10 @@ export class forgotPass extends Component {
                    
                    <input type="submit" value="submit" className="submit"/>
                    </div>
-              
+              </div>
                 </form>
-            <div >
+                </div>
+            <div hidden >
              
             {this.state.lists.map(
               item=>{
@@ -100,6 +106,7 @@ export class forgotPass extends Component {
                 <span>
 
                 {localStorage.setItem('id',JSON.stringify(this.state.id))}
+                {localStorage.setItem('username',JSON.stringify(this.state.email))}
 
                 </span>
 

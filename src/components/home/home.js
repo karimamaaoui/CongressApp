@@ -83,7 +83,7 @@ import { Link } from "react-router-dom";
             const emails=window.localStorage.getItem('users');
             if(!emails )
             {
-                return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+                return <h1>  error  you should login <button ><Link to="/login"> Login </Link></button> </h1>
             }
             else {
            
@@ -93,7 +93,7 @@ import { Link } from "react-router-dom";
                         <div><Navbar/>
                         </div>
                         <div>
-                            <h1> List of Congress</h1>
+                            <h1> List of Congresses</h1>
                             <Link to ="/add">
     
                             <button className="btn btn-primary"  >Add </button>

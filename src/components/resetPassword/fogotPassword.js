@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-
+import './reset.css'
 export class FogotPassword extends Component {
     constructor(props) {
         super(props)
@@ -38,7 +38,7 @@ export class FogotPassword extends Component {
                 this.setState({
                    newPassword: res.data
                 })
-                this.props.history.push('/login');
+                this.props.history.push('{/login');
 
             }) .catch(err=>{
                 console.log(err)
@@ -51,12 +51,27 @@ export class FogotPassword extends Component {
       this.setState({[event.target.name]:event.target.value})
       
     }
-  
+
     render() {
+        const email=localStorage.getItem('username','value');
+        const username=email.substring(1, email.length - 1)
+
+        const firstPart = username.substr(0,3);
+        const secondPart = username.split('@')[1];
+
+        const res = firstPart.concat("********").concat(secondPart);
+        
+
         return (
             <div className="container">
+                <h2>{res}</h2>
+                <div className="reset-wrapper">
+
+                <div className="form-group"></div>
+
             <form  onSubmit={this.onFormSubmit }> 
             <div className="form-group mb-3">
+                
                             <label className="mb-2">Password</label>
                             <input
                                 required
@@ -70,6 +85,7 @@ export class FogotPassword extends Component {
                    </div>
               
                 </form>
+                </div>
             </div>
         )
     }

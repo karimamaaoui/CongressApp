@@ -3,7 +3,9 @@ import axios from 'axios';
 import '../account/form.css';
 import {Link} from 'react-router-dom';
 //import { Alert } from "bootstrap";
-//import {Alert} from 'react-bootstrap';
+
+import Doctor from '../assets/gif.gif';
+
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
 
 
@@ -130,6 +132,7 @@ class LoginForm extends Component {
         return (
               
             <div className="container">
+             
                 <div className="login-register-wrapper">
                     <div className="nav-buttons">
                         <button id="loginBtn" className="active"  ><strong>LOGIN </strong></button>
@@ -171,19 +174,18 @@ class LoginForm extends Component {
                                     </div>
                                 )}
                         </div>
+                    <div className="forgot" >
+                    <Link to='/forgotPassword'>
+                    Forgot Password     
+                    </Link>
+                    </div>
+
 
                         <div className="d-grid mt-3">
                    
                         <input type="submit" value="submit" className="submit" />
                         </div>
                     </form>
-                    <br/>
-                    <div >
-                    <Link to='/forgotPassword'>
-                    Forgot Password     
-                    </Link>
-                    </div>
-
                     <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
@@ -193,8 +195,9 @@ class LoginForm extends Component {
                     </div>
 
                 </div>
+                
+       
             </div>
-
             </div>
         );
     }

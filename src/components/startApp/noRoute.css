@@ -1,0 +1,85 @@
+.noRoute{
+    height: 100vh;
+    background-image: url(../assets/monster.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+  
+  
+  }
+  
+  h1 {
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 5%;
+    overflow: hidden;
+
+  
+  }
+  .h1route{
+    font-size: 9em;
+
+  }
+  h1 span::after{
+
+    content: '🕛';
+    font-size: 0.9em;
+    animation: clock 5s linear infinite;
+  }
+  
+  h2{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 12.13em;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: -178;
+    color: white;
+    font-family: sans-serif;
+  
+  }
+
+  @keyframes clock {
+      8.333% {
+          content: '🕛';
+
+      }
+
+    16.666% {
+
+        content: '🕛';
+
+      } 
+
+    25% {
+
+        content: '🕛';
+
+    }
+
+    33.333% {
+
+        content: '🕛';
+
+    }
+    41% {
+
+        content: '🕛';
+
+    }
+    58.333% {
+
+        content: '🕛';
+
+    }
+
+    66% {
+
+        content: '🕛';
+
+    }
+  }

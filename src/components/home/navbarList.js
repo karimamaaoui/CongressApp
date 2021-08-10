@@ -33,7 +33,7 @@ class NavbarList extends Component {
         return(
             <div >
                 <header>                        
-                    <Navbar variant="dark" className="navbar" >
+                    <Navbar  className="navbar" >
                             <Navbar.Brand className="navTitle" >
                                 Welcome
                             </Navbar.Brand>
