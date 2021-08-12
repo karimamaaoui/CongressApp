@@ -3,13 +3,11 @@ import axios from 'axios';
 import '../account/form.css';
 import {Link} from 'react-router-dom';
 //import { Alert } from "bootstrap";
+import { MDBSpinner } from 'mdb-react-ui-kit';
 
 import Doctor from '../assets/gif.gif';
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
-
-
-
 
 const validation = ({ error, ...rest }) => {
     let checkValidation = false;
@@ -36,6 +34,7 @@ const validation = ({ error, ...rest }) => {
 
 class LoginForm extends Component {
 
+
     constructor(props) {
         super(props)
 
@@ -44,6 +43,7 @@ class LoginForm extends Component {
             email: '',
             password: '',
             islogged: false,
+            loadding:false,
             message: '',
             error: {
                 email: '',
@@ -51,12 +51,22 @@ class LoginForm extends Component {
             }
         }
     }
+  /*  showHide=()=>
+    {
+        if (validation(this.state)) {
+            document.getElementById("load").style.display="inline";
 
+        }
+        else 
+        {
+        document.getElementById("load").style.display="none";
+        }
+    }
+*/
     onFormSubmit = event => {
         event.preventDefault();
-
         if (validation(this.state)) {
-     /*       console.log(this.state)
+            /*       console.log(this.state)
         } else {
             console.log("Error occured");
         }*/
@@ -69,20 +79,25 @@ class LoginForm extends Component {
           .then(res=>{
               console.log(res.data);
              localStorage.setItem('token',res.data.token);
-
+ 
              this.setState ({    
                 islogged: true,
+                loadding:true,
                 message: 'Please wait...'
           });
           console.log(this.state.message);
           if (this.state.islogged===true)
           {
+
+
             this.props.history.push('/home');
             localStorage.setItem('users',JSON.stringify(data));
 
         
           }
           else {
+            
+            
             this.props.history.push('/login');
 
           }
@@ -173,7 +188,10 @@ class LoginForm extends Component {
                                         {error.password}
                                     </div>
                                 )}
-                        </div>
+               
+        </div>
+
+                     
                     <div className="forgot" >
                     <Link to='/forgotPassword'>
                     Forgot Password     
@@ -183,7 +201,11 @@ class LoginForm extends Component {
 
                         <div className="d-grid mt-3">
                    
-                        <input type="submit" value="submit" className="submit" />
+                        <input type="submit" value="submit" className="submit"/>
+                        </div>
+                        <div id="load"  className="invisible" >
+                        <MDBSpinner size='sm' role='status' tag='span' className='me-2' />
+                            Loading...
                         </div>
                     </form>
                     <br/>

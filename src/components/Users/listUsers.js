@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import Navbar from '../home/navbarList'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Card,Button} from 'react-bootstrap'
-//const x = localStorage.getItem("users");
-//const lastname = localStorage.getItem("users");
-export class ListCongresses extends Component {
+import '../home/home.css';
+import {Card,Button} from 'react-bootstrap';
+import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
+import Dialoug from './dialog'
+
+export class listUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -121,19 +123,39 @@ export class ListCongresses extends Component {
             
                       </div>
 
-                    <Card>
-  <Card.Body>
-    <Card.Title>Special title treatment</Card.Title>
-    <Card.Text>
-      With supporting text below as a natural lead-in to additional content.
-    </Card.Text>
-    <Button variant="primary">Go somewhere</Button>
-  </Card.Body>
-</Card>
+<MDBCard style={{ maxWidth: '22rem' ,display: 'flex'}}>
+
+      <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+        <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.jpg' fluid alt='...' />
+        <a>
+          <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+        </a>
+      </MDBRipple>
+        {this.state.lists.map(
+                item=>{
+                    return (
+      <MDBCardBody>
+        <MDBCardTitle>{item.id}</MDBCardTitle>
+        <MDBCardText>
+            {item.firstName} {item.lastName}
+        </MDBCardText>
+        <MDBBtn href='#'>Editer</MDBBtn>{'   '}
+        <MDBBtn href='#'>Remove</MDBBtn>
+
+      </MDBCardBody>
+      )}
+       )}
+    </MDBCard>
+    <div>
+
+    </div>
+
             </div>
             
         )}
     }
 }
 
-export default  ListCongresses;
+
+
+export default listUsers;

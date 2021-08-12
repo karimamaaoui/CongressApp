@@ -4,6 +4,7 @@ import Navbar from '../home/navbarList';
 import { Link } from "react-router-dom";
 import {Form } from 'react-bootstrap'
 import '../account/form.css';
+import DatePicker from "react-datepicker";
 
 
 
@@ -35,6 +36,7 @@ export class EditCongresses extends Component {
                     description: congresses.description,
                     createdAt : congresses.createdAt
                 });
+                console.log(congresses.createdAt)
             });
         }            
 
@@ -64,7 +66,7 @@ export class EditCongresses extends Component {
                 };
 
             let congres = {title: this.state.title, description: this.state.description, createdAt: this.state.createdAt};
-                
+
             return axios.put('https://127.0.0.1:8000/api/congres' + '/' + (this.state.id),congres,config).then( (res) =>{
              
                 console.log(res.data);
@@ -118,7 +120,12 @@ export class EditCongresses extends Component {
 
                     </Form.Group>
                     <label className="mb-2">date</label>
-                    <input type="datetime-local" name="createdAt" required defaultValue={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
+                    <input type="datetime-local"    name="createdAt" required defaultValue={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
+                    <DatePicker
+                    value={this.state.createdAt} 
+                    onChange={(e)=>this.setState({createdAt:e.target.value})} //only when value has changed 
+                    />
+
                      <button type="submit"   id="editbtn" className="btn btn-primary" >Update </button>
                 </div>
                 </form>

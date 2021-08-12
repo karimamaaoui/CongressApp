@@ -38,7 +38,7 @@ export class FogotPassword extends Component {
                 this.setState({
                    newPassword: res.data
                 })
-                this.props.history.push('{/login');
+                this.props.history.push('/login');
 
             }) .catch(err=>{
                 console.log(err)

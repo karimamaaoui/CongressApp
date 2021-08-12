@@ -6,13 +6,13 @@ import Home from './home/home';
 import LoginForm from './account/formLogin';
 import NoRouteFound from './startApp/noRouteFound';
 import Profile from './account/userProfile';
-import ListCongres from './congresses/listCongresses';
+import ListUsers from './Users/listUsers';
 import AddCongresses from './congresses/addCongresses';
 import Edit from './congresses/editCongresses';
 import UpdateProfile from './account/updateProfile';
 import ForgotPassword from './resetPassword/fogotPassword';
 import ForgotEM from './resetPassword/forgotPass';
-
+import DialogAlert from './Users/dialog'
 
 const Routes = () => {
     
@@ -28,16 +28,17 @@ const Routes = () => {
             <Route exact  path='/home' component={Home}/> 
             <Route exact  path='/profile' component={Profile}/>   
             <Route exact  path='/update/:id' component={UpdateProfile}/>   
-            <Route exact  path='/listCongresses' component={ListCongres}/>   
+            <Route exact  path='/listUsers' component={ListUsers}/>   
             <Route exact  path='/add' component={AddCongresses}/>   
             <Route exact  path='/edit/:id' component={Edit}/> 
               
             <Route exact  path='/forgotPassword' component={ForgotEM}/> 
             <Route exact  path='/reset-password/:id' component={ForgotPassword}/> 
+            <Route exact  path='/dialog' component={DialogAlert}/>   
 
             <Route exact  path='/*' component={NoRouteFound}/>  
 
-            
+
             </Switch>
         </div>
         </BrowserRouter>
