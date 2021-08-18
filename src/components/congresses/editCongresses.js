@@ -4,7 +4,12 @@ import Navbar from '../home/navbarList';
 import { Link } from "react-router-dom";
 import {Form } from 'react-bootstrap'
 import '../account/form.css';
-import DatePicker from "react-datepicker";
+import DateTimePicker from 'react-datetime-picker';
+import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
+import moment from "moment";
+import { CalendarComponent} from '@syncfusion/ej2-react-calendars';
+import './Calendar.css'
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 
@@ -17,7 +22,7 @@ export class EditCongresses extends Component {
             id: this.props.match.params.id,
             title: '',
             description: '',
-            createdAt: '',
+            createdAt: new Date(),
             congres:[]
         }
     }
@@ -66,7 +71,6 @@ export class EditCongresses extends Component {
                 };
 
             let congres = {title: this.state.title, description: this.state.description, createdAt: this.state.createdAt};
-
             return axios.put('https://127.0.0.1:8000/api/congres' + '/' + (this.state.id),congres,config).then( (res) =>{
              
                 console.log(res.data);
@@ -84,8 +88,10 @@ export class EditCongresses extends Component {
         
         }
 
-
     render() {
+
+        console.log(typeof(new Date(this.state.createdAt)))
+   //    this.state.createdAt = d.toISOString().slice(0,16)
         const emails=window.localStorage.getItem('users');
         const emailuser = JSON.parse(emails);
       // const redirectToUrl = <Redirect to="/login" />;
@@ -120,12 +126,14 @@ export class EditCongresses extends Component {
 
                     </Form.Group>
                     <label className="mb-2">date</label>
-                    <input type="datetime-local"    name="createdAt" required defaultValue={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
-                    <DatePicker
-                    value={this.state.createdAt} 
-                    onChange={(e)=>this.setState({createdAt:e.target.value})} //only when value has changed 
-                    />
+                        
+                    <DateTimePicker
+                        value={this.state.createdAt} onChange={(e)=>this.setState({createdAt:e.target.value})} />  
 
+    
+                       
+                    <CalendarComponent   onInit={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
+                   
                      <button type="submit"   id="editbtn" className="btn btn-primary" >Update </button>
                 </div>
                 </form>

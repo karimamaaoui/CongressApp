@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import '../account/form.css';
 import {Link} from 'react-router-dom';
-//import { Alert } from "bootstrap";
 import { MDBSpinner } from 'mdb-react-ui-kit';
 
 
@@ -38,7 +36,7 @@ const
 
     </div>
   );
-class LoginForm extends Component {
+class LoginFormAdmin extends Component {
 
     constructor(props) {
         super(props)
@@ -83,7 +81,7 @@ onFormSubmit = event => {
           password:this.state.password
       };
       console.log(data)
-      axios.post('https://127.0.0.1:8000/api/login',data)
+      axios.post('https://localhost:8000/api/admin/login',data)
           .then(res=>{
               console.log(res.data);
              localStorage.setItem('token',res.data.token);
@@ -98,22 +96,17 @@ onFormSubmit = event => {
 
           if (this.state.islogged===true)
           {
-            if(this.state.loading ===false)
-            {
-                <Spinner />
-
-            } 
 
 
             this.props.history.push('/home');
-            localStorage.setItem('users',JSON.stringify(data));
+            localStorage.setItem('useradmin',JSON.stringify(data));
 
         
           }
           else {
             
             
-            this.props.history.push('/login');
+            this.props.history.push('/loginadmin');
 
           }
               
@@ -171,7 +164,6 @@ onFormSubmit = event => {
                 <div >
 
                     <form  onSubmit={this.onFormSubmit } >
-                    {this.state.loading ? <Spinner /> : null}
                        
                         <div className="form-group mb-3">
                             <label className="mb-2">Email</label>
@@ -235,4 +227,4 @@ onFormSubmit = event => {
         );
     }
 }
-export default LoginForm
+export default LoginFormAdmin

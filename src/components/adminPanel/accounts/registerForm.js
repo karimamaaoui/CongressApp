@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import '../account/form.css';
 import {Link} from 'react-router-dom';
-//import { Alert } from "bootstrap";
-import { MDBSpinner } from 'mdb-react-ui-kit';
-
+//import {Alert} from 'react-bootstrap';
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
 
@@ -21,7 +18,6 @@ const validation = ({ error, ...rest }) => {
 
     Object.values(rest).forEach(val => {
         if (val === null) {
-            
             checkValidation = false
         } else {
             checkValidation = true
@@ -31,101 +27,63 @@ const validation = ({ error, ...rest }) => {
     return checkValidation;
 };
 
-const 
- Spinner = () => (
-    <div className="spinner">
-         <MDBSpinner size='sm' role='status' tag='span' className='me-2' />
+class RegisterFormAdmin extends Component {
 
-    </div>
-  );
-class LoginForm extends Component {
+    
 
     constructor(props) {
         super(props)
 
         this.state = {
-            
+            firstName:'',
+            lastName:'',
             email: '',
             password: '',
-            islogged: false,
-            loading:true,
-            message: '',
             error: {
                 email: '',
-                password: ''
+                password: '',
+                firstName:'',
+                lastName:'',
+             
             }
         }
     }
-  /*  showHide=()=>
-    {
-        if (validation(this.state)) {
-            document.getElementById("load").style.display="inline";
 
-        }
-        else 
-        {
-        document.getElementById("load").style.display="none";
-        }
-    }
-*/
-
-  
-
-onFormSubmit = event => {
+    onFormSubmit = event => {
         event.preventDefault();
+
         if (validation(this.state)) {
-            /*       console.log(this.state)
+     /*       console.log(this.state)
         } else {
             console.log("Error occured");
         }*/
         const data={
+          firstName:this.state.firstName,
+          lastName:this.state.lastName,
           email:this.state.email,
           password:this.state.password
       };
       console.log(data)
-      axios.post('https://127.0.0.1:8000/api/login',data)
+      axios.post('https://localhost:8000/api/admin/register',data)
           .then(res=>{
-              console.log(res.data);
+             // console.log(res);
              localStorage.setItem('token',res.data.token);
-            
-             this.setState ({    
-                islogged: true,
-                loading:false,
-                message: 'Please wait...'
-          });
-          console.log(this.state.message);
-          console.log(this.state.loading);
+             
 
-          if (this.state.islogged===true)
-          {
-            if(this.state.loading ===false)
-            {
-                <Spinner />
-
-            } 
-
-
-            this.props.history.push('/home');
-            localStorage.setItem('users',JSON.stringify(data));
-
-        
-          }
-          else {
-            
-            
-            this.props.history.push('/login');
-
-          }
+             alert("Create account succesful");
+              this.props.history.push('/loginadmin');
               
+          localStorage.setItem('users',JSON.stringify(data));
+         
           })
           .catch(err=>{
-           
-            alert("email or password invalid please try again");
-           
-            console.log(err)
+            alert("ERROR email already exists ");
+
+              console.log(err)
           })
   
-        }    };
+        } 
+    };
 
 
     formObject = event => {
@@ -136,6 +94,14 @@ onFormSubmit = event => {
         let error = { ...this.state.error };
 
         switch (name) {
+          case "firstName":
+            error.firstName =
+                value.length < 3 ? "firstName should 3 characaters long" : "";
+            break;
+            case "lastName":
+              error.lastName =
+                  value.length < 3 ? "lastName should 3 characaters long" : "";
+              break;
             case "email":
                 error.email = regularExpression.test(value)
                     ? ""
@@ -160,19 +126,51 @@ onFormSubmit = event => {
         const { error } = this.state;
 
         return (
-              
+              <div className="scroll">
             <div className="container">
-
                 <div className="login-register-wrapper">
                     <div className="nav-buttons">
-                        <button id="loginBtn" className="active"  ><strong>LOGIN </strong></button>
+                        <button id="loginBtn" className="active"  ><strong>REGISTER </strong></button>
                            </div>
                     <div className="form-group"></div>
                 <div >
+                    <form  onSubmit={this.onFormSubmit }>
+           
+                    <div className="form-group mb-3">
+                            <label className="mb-2">FirstName</label>
+                            <input
+                                required
+                                type="text"
+                                name="firstName"
+                                className={error.password.length > 0 ? "is-invalid form-control" : "form-control"}
+                                onChange={this.formObject}/>
 
-                    <form  onSubmit={this.onFormSubmit } >
-                    {this.state.loading ? <Spinner /> : null}
-                       
+                                {error.firstName.length > 0 && (
+                                       <div className="alert alert-danger" role="alert">
+                                     {error.firstName}
+                                    </div>
+                             
+                                )}
+                        </div>
+
+                        <div className="form-group mb-3">
+                            <label className="mb-2">LastName</label>
+                            <input
+                                required
+                                type="text"
+                                name="lastName"
+                                className={error.lastName.length > 0 ? "is-invalid form-control" : "form-control"}
+                                onChange={this.formObject}/>
+
+                                {error.lastName.length > 0 && (
+                                    <div className="alert alert-danger" role="alert">
+                                    {error.lastName}
+                                    </div>
+
+                                )}
+                        </div>
+
+
                         <div className="form-group mb-3">
                             <label className="mb-2">Email</label>
                             <input
@@ -182,9 +180,10 @@ onFormSubmit = event => {
                                 className={error.email.length > 0 ? "is-invalid form-control" : "form-control"}
                                 onChange={this.formObject}/>
                                 {error.email.length > 0 && (
-                                <div className="alert alert-danger" role="alert">
-                                     {error.email}
-                                    </div>
+                                       <div className="alert alert-danger" role="alert">
+                                       {error.email}
+                                      </div>
+                               
                                 )}
                         </div>
 
@@ -198,41 +197,30 @@ onFormSubmit = event => {
                                 onChange={this.formObject}/>
 
                                 {error.password.length > 0 && (
-                                <div className="alert alert-danger" role="alert">
-
-                                        {error.password}
-                                    </div>
+                                      <div className="alert alert-danger" role="alert">
+                                      {error.password}
+                                     </div>
+                              
                                 )}
-               
-        </div>
-
-                     
-                    <div className="forgot" >
-                    <Link to='/forgotPassword'>
-                    Forgot Password     
-                    </Link>
-                    </div>
-
+                        </div>
 
                         <div className="d-grid mt-3">
-                   
-                        <input type="submit" value="submit" className="submit" />
+                        <input type="submit" value="submit" className="submit" onClick={this.handleAlert}  />
                         </div>
-                       </form>
+                    </form>
                     <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
-                    <Link to='/register'>
-                        Register here
+                    <Link to='/loginadmin'>
+                        Login here
                     </Link>
                     </div>
 
                 </div>
-                
-       
             </div>
-            </div>
+
+            </div>            </div>
         );
     }
 }
-export default LoginForm
+export default RegisterFormAdmin
