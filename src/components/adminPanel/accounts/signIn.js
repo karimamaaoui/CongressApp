@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import '../account/form.css';
 import {Link} from 'react-router-dom';
-//import { Alert } from "bootstrap";
 import { MDBSpinner } from 'mdb-react-ui-kit';
-
+import './sign.css';
+import Contact from '../../assets/contact.jpg';
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
 
@@ -38,7 +37,7 @@ const
 
     </div>
   );
-class LoginForm extends Component {
+class LoginFormAdmin extends Component {
 
     constructor(props) {
         super(props)
@@ -83,7 +82,7 @@ onFormSubmit = event => {
           password:this.state.password
       };
       console.log(data)
-      axios.post('https://127.0.0.1:8000/api/login',data)
+      axios.post('https://localhost:8000/api/admin/login',data)
           .then(res=>{
               console.log(res.data);
              localStorage.setItem('token',res.data.token);
@@ -98,22 +97,17 @@ onFormSubmit = event => {
 
           if (this.state.islogged===true)
           {
-            if(this.state.loading ===false)
-            {
-                <Spinner />
-
-            } 
 
 
-            this.props.history.push('/home');
-            localStorage.setItem('users',JSON.stringify(data));
+            this.props.history.push('/userslist');
+            localStorage.setItem('useradmin',JSON.stringify(data));
 
         
           }
           else {
             
             
-            this.props.history.push('/login');
+            this.props.history.push('/loginadmin');
 
           }
               
@@ -161,20 +155,17 @@ onFormSubmit = event => {
 
         return (
               
-            <div className="container">
-
-                <div className="login-register-wrapper">
-                    <div className="nav-buttons">
-                        <button id="loginBtn" className="active"  ><strong>LOGIN </strong></button>
-                           </div>
-                    <div className="form-group"></div>
-                <div >
+            <div className="login-form">
+                <div className="container">
+                    <div className="main">
+                        <div className="content">
+                            <h2>Login</h2>
+                      
 
                     <form  onSubmit={this.onFormSubmit } >
-                    {!this.state.loading ? <Spinner /> : null}
                        
-                        <div className="form-group mb-3">
-                            <label className="mb-2">Email</label>
+                        <div >
+                            <label className="labelsign">Email</label>
                             <input
                                 required
                                 type="email"
@@ -188,8 +179,8 @@ onFormSubmit = event => {
                                 )}
                         </div>
 
-                        <div className="form-group mb-3">
-                            <label className="mb-2">Password</label>
+                        <div >
+                            <label className="labelsign">Password</label>
                             <input
                                 required
                                 type="password"
@@ -207,32 +198,36 @@ onFormSubmit = event => {
         </div>
 
                      
-                    <div className="forgot" >
+                    <p >
                     <Link to='/forgotPassword'>
                     Forgot Password     
                     </Link>
+                    </p>
+
+                        <div>
+                        <button type="submit" value="submit"  >submit</button>
                     </div>
-
-
-                        <div className="d-grid mt-3">
-                   
-                        <input type="submit" value="submit" className="submit" />
-                        </div>
-                       </form>
-                    <br/>
+                                    <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
-                    <Link to='/register'>
+                    <Link to='/registeradmin'>
                         Register here
                     </Link>
                     </div>
 
+                    </form> 
+                        </div>
+       
+                        <div className="form-img">
+                    <img src={Contact} alt="contact" />
+
                 </div>
-                
+
+                    </div>
        
             </div>
             </div>
         );
     }
 }
-export default LoginForm
+export default LoginFormAdmin

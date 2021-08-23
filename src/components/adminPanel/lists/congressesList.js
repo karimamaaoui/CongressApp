@@ -3,11 +3,11 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
-import { FaSteamSquare } from 'react-icons/fa';
-import { Input } from '@material-ui/core';
-import { Button } from 'bootstrap';
+import './main.css'
 
 import{FormControl,Form} from "react-bootstrap";
+
+
 
 export class CongressesList extends Component {
   
@@ -18,11 +18,14 @@ export class CongressesList extends Component {
             lists:[],
             congresid:'',
             search:'',
-            searchRes:''
+            searchRes:'',
+            activePage: 1
             
         };
     }
 
+ 
+           
     handleUpdate(id)
     {
         this.props.history.push(`/edit/${id}`);
@@ -44,7 +47,9 @@ export class CongressesList extends Component {
                 this.setState({
                     lists
                 });
-              }).catch(err=>{
+                window.location.reload(true);
+                
+                 }).catch(err=>{
            
                
                 console.log(err)
@@ -114,11 +119,12 @@ export class CongressesList extends Component {
 
     }
     render() {
+
         const emails=window.localStorage.getItem('useradmin');
         const emailuser = JSON.parse(emails);
         if(!emails )
         {
-            return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
+            return <h1>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </h1>
         }
         else {
         return (
@@ -127,35 +133,55 @@ export class CongressesList extends Component {
                     <Navbar />
 
                     <div>
+                        <h1 
+                        >List Of Congresees </h1>
+                        {' '}
+                        <br/>
 
-                        <h1> List </h1>
-                        <div >
+                        <div style={{display:"flex"}} >
+
                                 <Form  style ={{
 
                                 padding: "8px 8px",
                                 cursor: "pointer",
                                 verticalAlign: "middle",
-                                marginLeft:"50%"  ,
+                                marginLeft:"30%"  ,
                                 width:"20%"
                                     }}>
                                 <FormControl type="text" placeholder="Search "  defaultValue={this.state.search}
                                     onChange={this.handlefilter}
                                     />
                             </Form>
-                          
+                            { '  '}
+                            <Link to ="/add">
+    
+    <button className="btn btn-primary" style={{  padding: "8px 8px",
+                                cursor: "pointer",
+                                verticalAlign: "middle",
+                                marginLeft:"60%"  ,
+                                width:"100%"
+                                }}  >Add  new congresses</button>
+    <br/>
+
+    </Link>
+    
                                 </div>
-                                <br />
-                            <table   style={{alignItems:"center"}} className="table table-striped table-dark able-responsive-md" >  
+       
+                                <br/>
+                                <div>
+     <br/>   
+
+    <table   style={{alignItems:"center"}} className="table table-striped table-dark able-responsive-md" >  
                                 <thead className="thead-dark ">
                                   <tr >
                                     <th>#</th>
                                     <th>title</th>
                                     <th>description</th>
                                     <th>Created At</th>
-
                                     <th> Action</th>
                                     </tr>
                                     </thead>
+                           
                                     {this.state.searchRes.length ===0 ?
 
                                     this.state.listsCong.map(
@@ -180,10 +206,10 @@ export class CongressesList extends Component {
                                                     
                                                     if (result) {
                                                       this.handleDelete(item.id);
-                                                      this.props.history.push(`/congresseslist`);
-                                          
+
                                                     } else {
                                                       this.props.history.push(`/congresseslist`);
+
                                           
                                                   }
                                                   }}
@@ -223,11 +249,12 @@ export class CongressesList extends Component {
                                             
                                             if (result) {
                                               this.handleDelete(item.id);
-                                              this.props.history.push(`/congresseslist`);
-                                  
+                                         
+                                            
                                             } else {
                                               this.props.history.push(`/congresseslist`);
-                                  
+                                           
+                                      
                                           }
                                           }}
                                         
@@ -259,7 +286,8 @@ export class CongressesList extends Component {
                   
 
                       </div>
-
+      
+                                </div>
 
             </div>
             

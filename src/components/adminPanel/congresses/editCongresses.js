@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Navbar from '../home/navbarList';
 import { Link } from "react-router-dom";
 import {Form } from 'react-bootstrap'
-import '../account/form.css';
 import DateTimePicker from 'react-datetime-picker';
-import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
-import moment from "moment";
-import { CalendarComponent} from '@syncfusion/ej2-react-calendars';
-import './Calendar.css'
-import 'react-datepicker/dist/react-datepicker.css';
-
-
+import "react-datepicker/dist/react-datepicker.css";
+import Navbar from  '../sidebarMenu/NavbarMenu';
 
 export class EditCongresses extends Component {
     constructor(props) {
@@ -22,10 +15,11 @@ export class EditCongresses extends Component {
             id: this.props.match.params.id,
             title: '',
             description: '',
-            createdAt: new Date(),
+            createdAt: '',
             congres:[]
         }
     }
+
 
     componentDidMount(){
 
@@ -35,22 +29,18 @@ export class EditCongresses extends Component {
                 Authorization: 'Bearer ' +localStorage.getItem('token')            }
                 
             };
+
+      //      const createdAtStr = moment(this.state.createdAt).format('YYYY-MM-DD HH:mm:ss')
+
         return axios.get('https://127.0.0.1:8000/api/congres' + '/' + (this.state.id),config).then( (res) =>{
                 let congresses = res.data;
                 this.setState({title: congresses.title,
                     description: congresses.description,
-                    createdAt : congresses.createdAt
+                    createdAt :  new Date(congresses.createdAt)
                 });
-                console.log(congresses.createdAt)
             });
-        }            
-
-        handleChange(event)
-        {
-          this.setState({[event.target.name]:event.target.value})
-          
-        }
-      
+        } 
+              
 
 
         handleEdit = (e) => {
@@ -70,7 +60,7 @@ export class EditCongresses extends Component {
                     
                 };
 
-            let congres = {title: this.state.title, description: this.state.description, createdAt: this.state.createdAt};
+            let congres = {title: this.state.title, description: this.state.description, createdAt:new Date( this.state.createdAt)};
             return axios.put('https://127.0.0.1:8000/api/congres' + '/' + (this.state.id),congres,config).then( (res) =>{
              
                 console.log(res.data);
@@ -78,7 +68,7 @@ export class EditCongresses extends Component {
                    congres: res.data
                 })
                 console.log('congresses => ' + JSON.stringify(congres));
-                this.props.history.push('/home');
+                this.props.history.push('/congresseslist');
 
 
                 
@@ -89,15 +79,24 @@ export class EditCongresses extends Component {
         }
 
     render() {
-
-        console.log(typeof(new Date(this.state.createdAt)))
+        //const d=new Date(this.state.createdAt);
+      //  this.state.createdAt=d
+        //console.log(this.state.createdAt)
+     //   console.log(typeof(new Date(this.state.createdAt)))
    //    this.state.createdAt = d.toISOString().slice(0,16)
-        const emails=window.localStorage.getItem('users');
+
+
+  /*  var date = new Date(this.state.createdAt); 
+   let dateMDY = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+        console.log(dateMDY)
+ */
+   const emails=window.localStorage.getItem('useradmin');
         const emailuser = JSON.parse(emails);
       // const redirectToUrl = <Redirect to="/login" />;
+
         if(!emails )
         {
-            return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+            return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
             //<NoRouteFound/>
             //  {redirectToUrl}
         }
@@ -113,7 +112,7 @@ export class EditCongresses extends Component {
                         <div className="add-wrapper">
                         <div className="form-group"></div>
 
-                <form  onSubmit={this.handleEdit } >
+                <form  onSubmit={this.handleEdit } style={{textAlign:"left"}} >
                 <div className="form-group mb-3">
 
                 <label className="mb-2">Title</label>
@@ -122,27 +121,52 @@ export class EditCongresses extends Component {
                     <Form.Group className="mb-3" >
 
                     <label className="mb-2">description</label>
-                    <Form.Control as="textarea" rows={3} name="description" required defaultValue={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}/>
+                    <Form.Control as="textarea" rows={3}  name="description" required defaultValue={this.state.description} onChange={(e)=>this.setState({description:e.target.value})}/>
 
                     </Form.Group>
-                    <label className="mb-2">date</label>
-                        
-                    <DateTimePicker
-                        value={this.state.createdAt} onChange={(e)=>this.setState({createdAt:e.target.value})} />  
+                    <Form.Group className="mb-3">
 
-    
-                       
-                    <CalendarComponent   onInit={this.state.createdAt}  onChange={(e)=>this.setState({createdAt:e.target.value})}/>
-                   
-                     <button type="submit"   id="editbtn" className="btn btn-primary" >Update </button>
+                    <label className="mb-2">date</label>
+                    <br/>
+                    <DateTimePicker value={this.state.createdAt} 
+                            selected={this.state.createdAt}
+                             defaultValue={new Date()}
+                              name="createdAt"
+                             onChange={(createdAt)=>this.setState({createdAt:createdAt})}
+                            className="datepicker"
+                />
+                    </Form.Group>
+                    <br/>   
+               
+                      <input type="submit" value="update" className="submit"  style={{
+
+                    fontSize:" 1.5em",
+                    marginLeft: "13em",
+                    border:"0px",
+                    cursor: "pointer",
+                    width:"22%",
+                    height:"12%",
+                    textAlign:"center",
+                    backgroundColor:" rgba(155,208,147, 1)"
+
+                      }} />
                 </div>
                 </form>
+                <p>
+                    
+                        
+                    
+                </p>
 
 
 
                             </div>
 
-            </div></div>
+
+            </div>
+          
+            
+            </div>
             
         )
     }}

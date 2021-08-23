@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Navbar from '../home/navbarList'
+import Navbar from '../../home/navbarList'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {Card,Button} from 'react-bootstrap'
-//const x = localStorage.getItem("users");
-//const lastname = localStorage.getItem("users");
+
+
 export class ListCongresses extends Component {
     constructor(props) {
         super(props);

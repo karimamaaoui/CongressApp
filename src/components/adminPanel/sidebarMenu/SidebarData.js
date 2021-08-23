@@ -33,7 +33,7 @@ export const SidebarData =[
     
     {
         title:'Profile',
-        path:'/profile',
+        path:'/adminprofile',
         icon:<AiIcons.AiFillProfile/>,
         cName: 'nav-text'
     },

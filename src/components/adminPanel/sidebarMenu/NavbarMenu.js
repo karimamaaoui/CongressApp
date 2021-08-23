@@ -7,8 +7,6 @@ import './sidebar.css';
 import {IconContext} from 'react-icons';
 import * as Vsc from "react-icons/vsc"
 import * as Io from "react-icons/io"
-
-
 import axios from 'axios';
 
 function NavbarMenu() {
@@ -39,7 +37,7 @@ function NavbarMenu() {
                 </Link>
 
                 <div className="account" >
-                    <Link to="/profile" >
+                    <Link to="/adminprofile" >
                       <Vsc.VscAccount/>
 
                       </Link>
@@ -57,8 +55,10 @@ function NavbarMenu() {
                 <span>
                     {' '}
                 </span>
-                <div className="logout" onClick={signOut}>
+                <Link  to="/loginadmin">
+                <div className="logout"  onClick={signOut}>
                     <Io.IoIosLogOut /></div>
+                    </Link>
             </div>
 
             <nav className={sidebar ?'nav-menu active': 'nav-menu'} >

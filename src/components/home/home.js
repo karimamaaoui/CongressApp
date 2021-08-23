@@ -4,19 +4,10 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-//import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
 import ReadMoreReact from 'read-more-react';
 import { Confirm } from 'react-st-modal';
 
-
+import Footer from './Footer'
 
   export class Home extends Component {
 
@@ -122,13 +113,6 @@ import { Confirm } from 'react-st-modal';
                         </div>
                         <div>
                             <h1 style={{fontSize:"3.2em",fontWeight:"900",color:"#4CA1A3"}}> List of Congresses</h1>
-                            <Link to ="/add">
-    
-                            <button className="btn btn-primary" style={{align:"center",marginLeft:"30px",padding:"10px"}}  >Add  new congresses</button>
-                            <br/>
-
-                            </Link>
-                                
                             <div  style={{display:"flex",flexWrap: "wrap", alignItems: "center",justifyContent: "space-between",padding:"20px"}  }>     
                             {this.state.listsCong.map(
                              item=>{
@@ -157,26 +141,7 @@ import { Confirm } from 'react-st-modal';
                                  max={100}
                                  readMoreText="click here to read more"/>
                             </MDBCardText>
-                            <MDBBtn  className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)}>Editer</MDBBtn>{'   '}
-                        
-      <MDBBtn className="btn btn-danger"
-        onClick={async () => {
-          const result = await Confirm('Are you sure you want to delete this one', 
-            'Delete Сonfirmation ');
-          
-          if (result) {
-            this.handleDelete(item.id);
-            this.props.history.push(`/home`);
-
-          } else {
-            this.props.history.push(`/home`);
-
-        }
-        }}
-      >
-            Remove  
-      </MDBBtn>
-    
+                          
 
     
     </MDBCardBody>
@@ -195,11 +160,11 @@ import { Confirm } from 'react-st-modal';
 
   </div>
 
-
                           </div>
-    
-                    
-                </div>
+                          <Footer id="footer" className="footer"/>
+
+    </div>
+                
                 
             )}
         }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 //import {Alert} from 'react-bootstrap';
+import Contact from '../../assets/contact.jpg';
+
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
 
@@ -73,7 +75,7 @@ class RegisterFormAdmin extends Component {
              alert("Create account succesful");
               this.props.history.push('/loginadmin');
               
-          localStorage.setItem('users',JSON.stringify(data));
+          localStorage.setItem('useradmin',JSON.stringify(data));
          
           })
           .catch(err=>{
@@ -126,18 +128,17 @@ class RegisterFormAdmin extends Component {
         const { error } = this.state;
 
         return (
-              <div className="scroll">
+              
+            <div className="login-form">
             <div className="container">
-                <div className="login-register-wrapper">
-                    <div className="nav-buttons">
-                        <button id="loginBtn" className="active"  ><strong>REGISTER </strong></button>
-                           </div>
-                    <div className="form-group"></div>
-                <div >
+                <div className="main">
+                    <div className="content">
+                    <h2>Register</h2>
+
                     <form  onSubmit={this.onFormSubmit }>
            
-                    <div className="form-group mb-3">
-                            <label className="mb-2">FirstName</label>
+                    <div >
+                            <label className="labelsign" >FirstName</label>
                             <input
                                 required
                                 type="text"
@@ -153,8 +154,8 @@ class RegisterFormAdmin extends Component {
                                 )}
                         </div>
 
-                        <div className="form-group mb-3">
-                            <label className="mb-2">LastName</label>
+                        <div >
+                            <label className="labelsign">LastName</label>
                             <input
                                 required
                                 type="text"
@@ -171,8 +172,8 @@ class RegisterFormAdmin extends Component {
                         </div>
 
 
-                        <div className="form-group mb-3">
-                            <label className="mb-2">Email</label>
+                        <div >
+                            <label className="labelsign">Email</label>
                             <input
                                 required
                                 type="email"
@@ -187,8 +188,8 @@ class RegisterFormAdmin extends Component {
                                 )}
                         </div>
 
-                        <div className="form-group mb-3">
-                            <label className="mb-2">Password</label>
+                        <div >
+                            <label className="labelsign">Password</label>
                             <input
                                 required
                                 type="password"
@@ -204,21 +205,29 @@ class RegisterFormAdmin extends Component {
                                 )}
                         </div>
 
-                        <div className="d-grid mt-3">
-                        <input type="submit" value="submit" className="submit" onClick={this.handleAlert}  />
+                        <div >
+                        <input type="submit" value="submit" className="submit"  />
+                        <button type="submit" value="submit"  >Register</button>
+
                         </div>
-                    </form>
-                    <br/>
-                    <div className="already">
+                    
+                        <div className="already">
                     Don't  have  an account  {'   '}        
                     <Link to='/loginadmin'>
                         Login here
                     </Link>
                     </div>
 
+                    
+                    </form>
+                    
+                    
                 </div>
-            </div>
+                   <div className="form-img">
+                    <img src={Contact} alt="contact" />
+                    </div>
 
+</div>
             </div>            </div>
         );
     }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Navbar from '../home/navbarList';
 import {Link} from 'react-router-dom';
-import '../account/form.css';
-
+import Navbar from '../sidebarMenu/NavbarMenu'
 import {Form } from 'react-bootstrap'
 
 const initialState ={
@@ -64,7 +62,7 @@ export class AddCongresses extends Component {
         .then(res=>{
             console.log(res.data);
             
-            this.props.history.push('/home');
+            this.props.history.push('/congresseslist');
 
         })
         .catch(err=>{
@@ -74,10 +72,10 @@ export class AddCongresses extends Component {
       }
       
     render() {
-      const emails=window.localStorage.getItem('users');
+      const emails=window.localStorage.getItem('useradmin');
       if(!emails )
       {
-          return <p>  error  you should login <button ><Link to="/login"> Login </Link></button> </p>
+          return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
       }
       else {
     
@@ -107,7 +105,7 @@ export class AddCongresses extends Component {
                     {this.state.descriptionError}
                     </div>
 
-  </Form.Group>
+                </Form.Group>
 
 
                     <label className="mb-2">date</label>
@@ -118,7 +116,18 @@ export class AddCongresses extends Component {
                     <div className="d-grid mt-3">
 
                      </div>
-                     <button type="submit"  className="btn btn-primary"  id="addbtn" >
+                     <button type="submit"  className="btn btn-primary"  id="addbtn"  style={{
+
+                    fontSize:" 1.5em",
+                    marginLeft: "13em",
+                    border:"0px",
+                    cursor: "pointer",
+                    width:"22%",
+                    height:"12%",
+                    textAlign:"center",
+                    backgroundColor:" rgba(155,208,147, 1)"
+
+                      }} >
                        Add 
                        </button>
                    

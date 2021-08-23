@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
+import{FormControl,Form} from "react-bootstrap";
 
 
 export class UsersList extends Component {
@@ -11,6 +12,8 @@ export class UsersList extends Component {
         this.state = {
             lists:[],
             currentUserId :'',
+            search:'',
+            searchRes:'',
         };
     }
     handleUpdate(id)
@@ -34,6 +37,8 @@ export class UsersList extends Component {
                     this.setState({
                         lists
                     });
+                    window.location.reload(true);
+
                   }).catch(err=>{
                
                    
@@ -41,7 +46,21 @@ export class UsersList extends Component {
                   })
                 
             }  
-         
+            handlefilter = (e) => {
+                this.state.search = e.target.value;
+            
+                if (this.state.search !== '') {
+                  const searchRes = this.state.lists.filter((item) => {
+                    return (item.email.toLowerCase().startsWith(this.state.search.toLowerCase())||item.firstName.toLowerCase().startsWith(this.state.search.toLowerCase())||item.lastName.toLowerCase().startsWith(this.state.search.toLowerCase()));
+                    
+                    // Use the toLowerCase() method to make it case-insensitive
+                  })
+                  console.log(searchRes);
+        
+                  this.setState({searchRes})
+                } 
+              };
+                 
     
     componentDidMount()
     {
@@ -83,7 +102,7 @@ export class UsersList extends Component {
         const emailuser = JSON.parse(emails);
         if(!emails )
         {
-            return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
+            return <h1>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </h1>
         }
         else {
         return (
@@ -92,7 +111,41 @@ export class UsersList extends Component {
 
                     <div>
 
-                        <h1> List </h1>
+                        <h1> List Of Users</h1>
+                        {' '}
+                        <br/>
+
+                        <div style={{display:"flex"}} >
+
+                                <Form  style ={{
+
+                                padding: "8px 8px",
+                                cursor: "pointer",
+                                verticalAlign: "middle",
+                                marginLeft:"30%"  ,
+                                width:"20%"
+                                    }}>
+                                <FormControl type="text" placeholder="Search "  defaultValue={this.state.search}
+                                    onChange={this.handlefilter}
+                                    />
+                            </Form>
+                            { '  '}
+                            <Link to ="/add">
+    
+    <button className="btn btn-primary" style={{  padding: "8px 8px",
+                                cursor: "pointer",
+                                verticalAlign: "middle",
+                                marginLeft:"60%"  ,
+                                width:"100%"
+                                }}  >Add  new users</button>
+    <br/>
+
+    </Link>
+    
+                                </div>
+       
+                                <br/>
+
                             
                             <table style={{alignItems:"center"}} className="table table-striped table-dark able-responsive-md" >  
                                 <thead className="thead-dark ">
@@ -107,12 +160,57 @@ export class UsersList extends Component {
                                     <th> Action</th>
                                     </tr>
                                     </thead>
-                            {this.state.lists.map(
+                                    {this.state.searchRes.length ===0 ?
+
+                            this.state.lists.map(
                             
                                     item=>{
                                         return(
                                             
                                             <tbody className="table-info">
+
+                                            <tr className="bg-light"  key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.firstName}</td>
+                                                <td>{item.lastName}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.roles}</td>
+                                                <td>{item.createdAt}</td>
+                                                <td><button className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)}>Edit</button>
+                                                {' '}
+                                                <button className="btn btn-danger"
+                                                
+                                                onClick={async () => {
+                                                    const result = await Confirm('Are you sure you want to deactivate this one', 
+                                                      'Deactivate Сonfirmation ');
+                                                    
+                                                    if (result) {
+                                                      this.handleDelete(item.id);
+                                                      this.props.history.push(`/userslist`);
+                                                            
+                                                    } else {
+                                                      this.props.history.push(`/userslist`);
+                                          
+                                                  }
+                                                  }}
+                                                
+                                                >
+                                                    
+                                                    
+                                                    Remove
+                                                    
+                                                    </button></td>
+
+                                            </tr>
+                                            </tbody>
+                                            
+
+                                        )
+
+                                    }
+                                ): this.state.searchRes.map((item)=> {
+                                    return (
+                                        <tbody className="table-info">
 
                                             <tr className="bg-light"  key={item.id}>
                                                 <td>{item.id}</td>
@@ -149,11 +247,11 @@ export class UsersList extends Component {
                                             </tr>
                                             </tbody>
                                             
+                                        
+                                    )
+                                })
 
-                                        )
 
-                                    }
-                                )
                             }
                             </table>
                   

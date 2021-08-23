@@ -5,6 +5,8 @@ import {Redirect} from 'react-router-dom';
 import React, { Component } from 'react'
 //import { Alert } from "bootstrap";
 import axios from 'axios';
+import Footer from './Footer'
+
 
 class NavbarList extends Component {
     constructor(props) {
@@ -32,14 +34,15 @@ class NavbarList extends Component {
           }
         return(
             <div >
+              <div>
                 <header>                        
                     <Navbar  className="navbar" >
                             <Navbar.Brand className="navTitle" >
                                 Welcome
                             </Navbar.Brand>
                             <Nav  >
-                            <Nav.Link href="/profile">Profile</Nav.Link >    
-                            <Nav.Link href="#footer">About Us</Nav.Link >
+                            <Nav.Link href="/profile">Profile</Nav.Link >  
+                            <Nav.Link href="#footer"  onClick={window.scrollTo(0,1200)}>About Us</Nav.Link >
                             <Nav.Link  href="/home" >Congresses</Nav.Link >
                             <Nav.Link href="/" onClick={this.signOut}>Logout</Nav.Link >
     
@@ -55,12 +58,12 @@ class NavbarList extends Component {
     
     
                         </header>
+                        
+                        </div>
     
-    
-    
-                    
      
                 </div>
+                
                 
         )
     }
