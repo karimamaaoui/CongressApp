@@ -44,14 +44,12 @@ class NavbarList extends Component {
                             <Nav.Link href="/profile">Profile</Nav.Link >  
                             <Nav.Link href="#footer"  onClick={window.scrollTo(0,1200)}>About Us</Nav.Link >
                             <Nav.Link  href="/home" >Congresses</Nav.Link >
-                            <Nav.Link href="/" onClick={this.signOut}>Logout</Nav.Link >
     
                             </Nav>
-                            <Form  className="navbar__item">
-                                <FormControl type="text" placeholder="Search "  />
-                            </Form>
-                            <Button className="navbar__item2" >Search</Button>
-    
+                            <Nav>
+                            <Nav.Link href="/"  className="navbar__item" onClick={this.signOut}>Logout</Nav.Link >
+
+                            </Nav>
                         </Navbar>
                  
     

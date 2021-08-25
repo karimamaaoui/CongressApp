@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import {Form } from 'react-bootstrap'
+import { Link } from "react-router-dom";
 
 
-class UpdateAdminProfile extends Component{
+class UpdateUser extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -14,7 +15,6 @@ class UpdateAdminProfile extends Component{
             lastName:'',
             email:'',
             roles:'',
-            password:'',
             users:[]
         };
     }
@@ -34,13 +34,9 @@ class UpdateAdminProfile extends Component{
             this.setState({firstName: users.firstName,
                 lastName: users.lastName,
                 email : users.email,
-                roles:users.roles,
-                password:users.password
+                roles:users.roles
             });
-            console.log(users);
-
         });
-
   
 
     }
@@ -54,17 +50,16 @@ class UpdateAdminProfile extends Component{
                     
                 };
 
-            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,roles:this.state.roles,password:this.state.password};
+            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,roles:this.state.roles};
                 
             return axios.put('https://127.0.0.1:8000/api/users' + '/' + (this.state.id),users,config).then( (res) =>{
              
                 console.log(res.data);
-
                 this.setState({
                    users: res.data
                 })
-                console.log('useradmin => ' + JSON.stringify(users));
-                this.props.history.push('/adminprofile');
+               // console.log('useradmin => ' + JSON.stringify(users));
+                this.props.history.push('/userslist');
 
 
                 
@@ -77,15 +72,21 @@ class UpdateAdminProfile extends Component{
  
     render(){
         const emails=window.localStorage.getItem('useradmin');
-
-      //  const emailuser = JSON.parse(emails);
+        if(!emails )
+        {
+            return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
+          
+        }
+        else {
+       
+     
         return(
             <div>
                             
 
             <Navbar />
             <div className="edit-congresses--wrapper">
-                        <h1 className="editH1"> Edit User Account </h1>
+                        <h1 className="editH1"> Edit User  </h1>
                         <div className="add-wrapper">
                         <div className="form-group"></div>
                 
@@ -108,13 +109,6 @@ class UpdateAdminProfile extends Component{
                     <label className="mb-2">email</label>
                     <input type="email" name="email" required defaultValue={this.state.email}  onChange={(e)=>this.setState({email:e.target.value})}/>
                  </Form.Group>
-
-                 <Form.Group className="mb-3" >
-                    <label className="mb-2">Password</label>
-
-                    <input type="password" required name="password" defaultValue={this.state.password}  onChange={(e)=>this.setState({password:e.target.value})} />
-                        </Form.Group>             
-
                  <Form.Group className="mb-3" >
                     <label className="mb-2">Roles</label>
 
@@ -140,10 +134,10 @@ class UpdateAdminProfile extends Component{
                 
                  </div>
               </div>
-            
+   
         </div>
         
         )
+    }}
     }
-    }
-export default UpdateAdminProfile;
+export default UpdateUser;

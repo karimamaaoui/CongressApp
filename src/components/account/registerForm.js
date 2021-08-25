@@ -131,7 +131,7 @@ class RegisterForm extends Component {
             <div className="container">
                 <div className="login-register-wrapper">
                     <div className="nav-buttons">
-                        <button id="loginBtn" className="active"  ><strong>REGISTER </strong></button>
+                        <button id="loginBtn" className="active" style={{backgroundColor:"transparent",marginLeft:"-17%"}} ><strong>REGISTER </strong></button>
                            </div>
                     <div className="form-group"></div>
                 <div >
@@ -212,7 +212,7 @@ class RegisterForm extends Component {
                     <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
-                    <Link to='/login'>
+                    <Link to='/login' style={{color:"#536162"}}>
                         Login here
                     </Link>
                     </div>

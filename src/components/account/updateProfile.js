@@ -13,7 +13,8 @@ class UpdateProfile extends Component{
             lists:[],
             firstName:'',
             lastName:'',
-            email:'',
+            email:'',          
+            password:'',
             users:[]
         };
     }
@@ -32,7 +33,9 @@ class UpdateProfile extends Component{
             let users = res.data;
             this.setState({firstName: users.firstName,
                 lastName: users.lastName,
-                email : users.email
+                email : users.email,
+                password:users.password
+
             });
         });
   
@@ -48,7 +51,7 @@ class UpdateProfile extends Component{
                     
                 };
 
-            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
+            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,password:this.state.password};
                 
             return axios.put('https://127.0.0.1:8000/api/users' + '/' + (this.state.id),users,config).then( (res) =>{
              
@@ -77,11 +80,14 @@ class UpdateProfile extends Component{
          <div><Navbar/> </div>
                             
 
-
-            <div >
+         <div className="edit-congresses--wrapper">
+                        <h1 className="editH1"> Edit Profile </h1>
+                        <div className="add-wrapper">
+                        <div className="form-group"></div>
                 
                  
               <div >
+         
               <form  onSubmit={this.handleEdit } >
                 <div className="form-group mb-3">
 
@@ -94,16 +100,28 @@ class UpdateProfile extends Component{
 
                     <label className="mb-2">email</label>
                     <input type="email" name="email" required defaultValue={this.state.email}  onChange={(e)=>this.setState({email:e.target.value})}/>
-                     <button type="submit"   id="editbtn" className="btn btn-primary" >Update </button>
+             
+                    <label className="mb-2">Password</label>
+
+                <input type="password" required name="password" defaultValue={this.state.password}  onChange={(e)=>this.setState({password:e.target.value})} />
+
+             
                 </div>
                 </form>
+                </div>
 
-                    <input type="submit" value="edit" className="submit" />
+                    <input type="submit" value="edit" className="submit" style={{
+                    fontSize:" 1.5em",
+                    border:"0px",
+                    cursor: "pointer",
+                    width:"22%",
+                    height:"12%", 
+                    marginLeft: "13em",
+                    textAlign:"center"}} />
                  </div>
               </div>
-
+              </div>
             
-
             
             
             
@@ -112,9 +130,6 @@ class UpdateProfile extends Component{
     
     
     
-        
-        
-        </div>
         
         )
     }

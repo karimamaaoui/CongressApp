@@ -14,16 +14,16 @@ const Footer =()=>{
                 </h2>
                 <div className="content"  >
                     <p>
-                        ddfdfdfdfffffff dfdfdfdddddddddd
+                        Congresses Medical
                     </p>
 
                     
                     <div className="social">
-                          <a href="/">
+                          <a href="#" style={{color:"white",backgroundColor:"transparent"}} >
                             <Fi.FiFacebook /> 
                             </a>
                             {' '}
-                            <a href="#" >
+                            <a href="#" style={{color:"white",backgroundColor:"transparent"}}>
                             <Fi.FiInstagram/> 
                             </a>
 
@@ -81,7 +81,7 @@ const Footer =()=>{
                             </textarea>
                             </div>
                             <div className="btn">
-                                <button type="submit" style={{ borderRadius:"12px" ,width:"100px",  background: "#0568c1"}} onClick="window.scrollTo(0,0)">Send</button>
+                                <button type="submit" style={{ borderRadius:"12px" ,width:"100px",  background: "#0568c1"}}>Send</button>
                             </div>
 
                         </form>

@@ -50,8 +50,6 @@ export class EditCongresses extends Component {
                 title:this.state.title,
                 description:this.state.description,
                 createdAt:this.state.createdAt,
-              
-        
             }
           */
             const config={
@@ -69,8 +67,6 @@ export class EditCongresses extends Component {
                 })
                 console.log('congresses => ' + JSON.stringify(congres));
                 this.props.history.push('/congresseslist');
-
-
                 
             }) .catch(err=>{
                 console.log(err)
@@ -79,26 +75,14 @@ export class EditCongresses extends Component {
         }
 
     render() {
-        //const d=new Date(this.state.createdAt);
-      //  this.state.createdAt=d
-        //console.log(this.state.createdAt)
-     //   console.log(typeof(new Date(this.state.createdAt)))
-   //    this.state.createdAt = d.toISOString().slice(0,16)
-
-
-  /*  var date = new Date(this.state.createdAt); 
-   let dateMDY = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-        console.log(dateMDY)
- */
+      
    const emails=window.localStorage.getItem('useradmin');
         const emailuser = JSON.parse(emails);
-      // const redirectToUrl = <Redirect to="/login" />;
 
         if(!emails )
         {
             return <p>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </p>
-            //<NoRouteFound/>
-            //  {redirectToUrl}
+          
         }
         else {
        

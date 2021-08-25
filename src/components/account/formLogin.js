@@ -165,7 +165,7 @@ onFormSubmit = event => {
 
                 <div className="login-register-wrapper">
                     <div className="nav-buttons">
-                        <button id="loginBtn" className="active"  ><strong>LOGIN </strong></button>
+                        <button id="loginBtn" className="active" style={{backgroundColor:"transparent",marginLeft:"-19%"}} ><strong>LOGIN </strong></button>
                            </div>
                     <div className="form-group"></div>
                 <div >
@@ -208,7 +208,7 @@ onFormSubmit = event => {
 
                      
                     <div className="forgot" >
-                    <Link to='/forgotPassword'>
+                    <Link to='/forgotPassword' style={{color:"#536162"}}>
                     Forgot Password     
                     </Link>
                     </div>
@@ -222,7 +222,7 @@ onFormSubmit = event => {
                     <br/>
                     <div className="already">
                     Don't  have  an account  {'   '}        
-                    <Link to='/register'>
+                    <Link to='/register' style={{color:"#536162"}}>
                         Register here
                     </Link>
                     </div>

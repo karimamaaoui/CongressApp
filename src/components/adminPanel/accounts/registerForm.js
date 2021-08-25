@@ -206,12 +206,11 @@ class RegisterFormAdmin extends Component {
                         </div>
 
                         <div >
-                        <input type="submit" value="submit" className="submit"  />
                         <button type="submit" value="submit"  >Register</button>
 
                         </div>
-                    
-                        <div className="already">
+                                    <br/>
+                        <div className="alreadyhave">
                     Don't  have  an account  {'   '}        
                     <Link to='/loginadmin'>
                         Login here

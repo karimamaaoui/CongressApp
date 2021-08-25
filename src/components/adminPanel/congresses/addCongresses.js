@@ -56,8 +56,6 @@ export class AddCongresses extends Component {
 
         
         console.log(config)
-
-
         axios.post('https://127.0.0.1:8000/api/congres',data,config)
         .then(res=>{
             console.log(res.data);
@@ -97,24 +95,18 @@ export class AddCongresses extends Component {
                     {this.state.titleError}
                     </div>
                     <Form.Group className="mb-3" >
-         
                     <label className="mb-2">description</label>
-                    <Form.Control as="textarea" rows={3} name="description" required onChange={this.handleChange}/>
-
+                    <Form.Control as="textarea" rows={10} name="description" required onChange={this.handleChange}/>
                     <div className=" error" > 
                     {this.state.descriptionError}
                     </div>
-
                 </Form.Group>
-
-
                     <label className="mb-2">date</label>
                     <input type="datetime-local" name="createdAt" required onChange={this.handleChange}  />
                     <div className=" error" > 
                     {this.state.createdAtError}
                     </div>
                     <div className="d-grid mt-3">
-
                      </div>
                      <button type="submit"  className="btn btn-primary"  id="addbtn"  style={{
 

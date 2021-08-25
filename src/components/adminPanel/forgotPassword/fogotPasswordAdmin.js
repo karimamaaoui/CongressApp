@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import './reset.css'
-export class FogotPassword extends Component {
+import './resetPassAdmin.css'
+import * as Gi from "react-icons/gi";
+
+export class FogotPasswordAdmin extends Component {
     constructor(props) {
         super(props)
         
@@ -38,7 +40,7 @@ export class FogotPassword extends Component {
                 this.setState({
                    newPassword: res.data
                 })
-                this.props.history.push('/login');
+                this.props.history.push('/loginadmin');
 
             }) .catch(err=>{
                 console.log(err)
@@ -48,11 +50,13 @@ export class FogotPassword extends Component {
     
     handleChange(event)
     {
+        
       this.setState({[event.target.name]:event.target.value})
       
     }
 
     render() {
+        
         const email=localStorage.getItem('username','value');
         const username=email.substring(1, email.length - 1)
 
@@ -63,17 +67,42 @@ export class FogotPassword extends Component {
         
 
         return (
+            <div>
+                <span>
+                    <Gi.GiReturnArrow style={{marginTop:"1%",
+                                    
+                    fontSize: "2rem",
+                    marginLeft:"1rem"
+                }} onClick={this.props.history.goBack}/>
+                
+                    </span>
+          
             <div className="container">
-                <h2 style={{marginTop:'3em'}}>{res}</h2>
+                
+                <br/><br/>
+                <h2 style={{fontSize:"2.5rem"}}>{res}</h2>
                 <div className="reset-wrapper">
 
                 <div className="form-group"></div>
+                <div className="content">
 
             <form  onSubmit={this.onFormSubmit }> 
             <div className="form-group mb-3">
                 
-                            <label className="mb-2">Password</label>
-                            <input
+                            <label className="labelEmail">Password</label>
+                            <input  required  style={{
+                                    marginBottom: "15px",
+                                    fontStretch: "16px",
+                                    color:"#999",
+                                    padding: "14px 20px",
+                                    width: "99%",
+                                    display: "inline-block",
+                                    border: "1px solid #fff" ,
+                                    transition:" 0.3s ease",
+                                    background: "#BBE4F3",
+                                    borderRadius: "35px",
+
+                                }}
                                 required
                                 type="password" value={this.state.password} onChange={this.handleChange}
                                 name="newPassword"
@@ -81,14 +110,16 @@ export class FogotPassword extends Component {
                         </div>
                         <div className="d-grid mt-3">
                    
-                   <input type="submit" value="submit" className="submit"/>
+                        <button type="submit" >Send</button>
                    </div>
               
                 </form>
+
                 </div>
-            </div>
+                </div>
+            </div>  </div>
         )
     }
 }
 
-export default FogotPassword
+export default FogotPasswordAdmin

@@ -14,14 +14,22 @@ export class UsersList extends Component {
             currentUserId :'',
             search:'',
             searchRes:'',
+            noOfElement:5
+
         };
     }
     handleUpdate(id)
         {
-            this.props.history.push(`/edit/${id}`);
+            this.props.history.push(`/updateuser/${id}`);
 
         }
 
+        loadMore =()=>{
+            this.setState({
+                noOfElement : this.state.noOfElement+this.state.noOfElement
+            })
+        }
+    
         
         handleDelete (id){
                 
@@ -98,6 +106,8 @@ export class UsersList extends Component {
     }
 
     render() {
+        const slice=this.state.lists.slice(0,this.state.noOfElement);
+
         const emails=window.localStorage.getItem('useradmin');
         const emailuser = JSON.parse(emails);
         if(!emails )
@@ -162,14 +172,14 @@ export class UsersList extends Component {
                                     </thead>
                                     {this.state.searchRes.length ===0 ?
 
-                            this.state.lists.map(
+                            slice.map(
                             
-                                    item=>{
+                                    (item,index)=>{
                                         return(
                                             
                                             <tbody className="table-info">
 
-                                            <tr className="bg-light"  key={item.id}>
+                                            <tr className="bg-light"  key={index}>
                                                 <td>{item.id}</td>
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
@@ -229,10 +239,10 @@ export class UsersList extends Component {
                                                     
                                                     if (result) {
                                                       this.handleDelete(item.id);
-                                                      this.props.history.push(`/home`);
+                                                      this.props.history.push(`/userslist`);
                                           
                                                     } else {
-                                                      this.props.history.push(`/home`);
+                                                      this.props.history.push(`/userslist`);
                                           
                                                   }
                                                   }}
@@ -259,6 +269,9 @@ export class UsersList extends Component {
             
                       </div>
 
+                      <button className="btn btn-dark d-block w-30 "style={{textAlign:"center" , marginLeft:"45%", marginBottom:'2%'}} onClick ={()=> this.loadMore() }  >
+         Load More
+     </button>
 
             </div>
             

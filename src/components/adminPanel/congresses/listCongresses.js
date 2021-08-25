@@ -11,6 +11,8 @@ export class ListCongresses extends Component {
         this.state = {
             lists:[],
             currentUserId :'',
+            noOfElement:5
+
         };
     }
 

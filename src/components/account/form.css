@@ -131,9 +131,10 @@ html,body {
 button:focus {
     outline: 0px;
 }
-button.active {
+strong {
     padding-bottom: 10px;
     border-bottom: solid 2px #69B99D;
+    background-color: transparent;
 } 
 
  /* footer: forgot section */
@@ -177,7 +178,6 @@ button.active {
 
   
   }
-  
   button.submit{
         font-weight: 700;
         text-transform: uppercase;
@@ -269,8 +269,4 @@ button.active {
 
    .forgot{
        margin-left: 70%;
-   }
-
-   .date{
-     color: red
    }

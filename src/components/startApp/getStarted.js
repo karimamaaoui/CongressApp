@@ -22,7 +22,11 @@ export class GetStarted extends React.Component {
            
          
                <h2 className="title" data-text="Welcome ...">Welcome ...</h2>
-               
+               <br/>
+               <p style={{marginLeft:"16.5%"}}>
+                   WELCOME is your partner in organizing congresses, seminars and conferences.
+               </p>
+
             <Link  to="/login">
                 <Button className="get" variant="dark">
                     Get Started

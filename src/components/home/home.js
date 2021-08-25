@@ -8,6 +8,7 @@ import ReadMoreReact from 'read-more-react';
 import { Confirm } from 'react-st-modal';
 
 import Footer from './Footer'
+import { Button } from 'bootstrap';
 
   export class Home extends Component {
 
@@ -31,6 +32,7 @@ import Footer from './Footer'
                 listsCong:[],
                 lists:[],
                 congresid:'',
+                noOfElement:3
                 
             };
         }
@@ -96,9 +98,19 @@ import Footer from './Footer'
             )
     
         }
+
+
+        
+
+        loadMore =()=>{
+            this.setState({
+                noOfElement : this.state.noOfElement+this.state.noOfElement
+            })
+        }
     
         render() {
-    
+            const slice=this.state.listsCong.slice(0,this.state.noOfElement);
+            console.log(this.state.noOfElement)
             const emails=window.localStorage.getItem('users');
             if(!emails )
             {
@@ -114,12 +126,12 @@ import Footer from './Footer'
                         <div>
                             <h1 style={{fontSize:"3.2em",fontWeight:"900",color:"#4CA1A3"}}> List of Congresses</h1>
                             <div  style={{display:"flex",flexWrap: "wrap", alignItems: "center",justifyContent: "space-between",padding:"20px"}  }>     
-                            {this.state.listsCong.map(
-                             item=>{
+                            {slice.map(
+                             (item,index)=>{
                             
                     return(
                         
-                        <div   key={item.id}>
+                        <div   key={index}>
                         <MDBCard   style={{ maxWidth: '22rem' ,maxHeight:'40rem'}}>
      
                         <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
@@ -149,16 +161,14 @@ import Footer from './Footer'
     </MDBCard>
                 </div>
             )
-     
      }
-     
      )}
 
-      
-
-    
-
   </div>
+     <button className="btn btn-dark d-block w-30 "style={{textAlign:"center" , marginLeft:"45%", marginBottom:'2%'}} onClick ={()=> this.loadMore() }  >
+         Load More
+     </button>
+
 
                           </div>
                           <Footer id="footer" className="footer"/>

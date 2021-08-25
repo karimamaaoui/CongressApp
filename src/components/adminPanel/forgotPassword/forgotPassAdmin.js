@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import './reset.css'
-export class forgotPass extends Component {
+import './resetPassAdmin.css'
+
+import * as Gi from "react-icons/gi";
+
+export class forgotPassAdmin extends Component {
 
 
     constructor(props) {
@@ -40,7 +43,7 @@ export class forgotPass extends Component {
                      })
                      console.log(this.state.lists)
                      localStorage.setItem('listOfUsers',JSON.stringify(this.state.lists));
-                     this.props.history.push('/reset-password'+ '/' + (this.state.id));
+                     this.props.history.push('/reset-password-admin'+ '/' + (this.state.id));
 
 
                     },
@@ -63,28 +66,57 @@ export class forgotPass extends Component {
             
             <div>
 
-             <div className="container" >
+<span>
+<Gi.GiReturnArrow style={{marginTop:"1%",
+                                    
+                                    fontSize: "2rem",
+                                    marginLeft:"1rem"
+                                }} onClick={this.props.history.goBack}/>
+                
+                    </span>
+             <div className="container">
 
              <div className="reset-wrapper">
-             <div className="form-group" ></div>
-
-            <form  onSubmit={this.onFormSubmit }style={{marginTop:'5em'}}> 
+             <div className="form-group"></div>
+             <div className="content">
+   
+            <form  onSubmit={this.onFormSubmit }> 
             <div >
             <div className="form-group mb-3">
 
-                            <label className="mb-2">Enter your address e-mail</label>
-                            <input
-                                required
+                            <label className="labelEmail">Enter your address e-mail</label>
+                            <input className="inputEmail"
+                                required  style={{
+                                    marginBottom: "15px",
+                                    fontStretch: "16px",
+                                    color:"#999",
+                                    padding: "14px 20px",
+                                    width: "99%",
+                                    display: "inline-block",
+                                    border: "1px solid #fff" ,
+                                    transition:" 0.3s ease",
+                                    background: "#BBE4F3",
+                                    borderRadius: "35px",
+                                
+
+
+
+
+
+                                }}
                                 type="email" value={this.state.email} onChange={this.handleChange}
                                 name="email"
                             />
                         </div>
                         <div className="d-grid mt-3">
                    
-                   <input type="submit" value="submit" className="submit"/>
+                        <button type="submit"   >Send</button>
                    </div>
               </div>
+
                 </form>
+                </div>
+
                 </div>
             <div hidden >
              
@@ -124,4 +156,4 @@ export class forgotPass extends Component {
     
 }
 
-export default forgotPass
+export default forgotPassAdmin

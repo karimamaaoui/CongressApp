@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import './main.css'
+import ReadMoreReact from 'read-more-react';
 
 import{FormControl,Form} from "react-bootstrap";
 
@@ -19,7 +20,7 @@ export class CongressesList extends Component {
             congresid:'',
             search:'',
             searchRes:'',
-            activePage: 1
+            noOfElement:5
             
         };
     }
@@ -118,10 +119,19 @@ export class CongressesList extends Component {
         )
 
     }
+    loadMore =()=>{
+        this.setState({
+            noOfElement : this.state.noOfElement+this.state.noOfElement
+        })
+    }
+
+
     render() {
 
         const emails=window.localStorage.getItem('useradmin');
         const emailuser = JSON.parse(emails);
+        const slice=this.state.listsCong.slice(0,this.state.noOfElement);
+
         if(!emails )
         {
             return <h1>  error  you should login <button ><Link to="/loginadmin"> Login </Link></button> </h1>
@@ -171,54 +181,52 @@ export class CongressesList extends Component {
                                 <div>
      <br/>   
 
-    <table   style={{alignItems:"center"}} className="table table-striped table-dark able-responsive-md" >  
+    <table className="table table-striped table-dark able-responsive-md" >  
                                 <thead className="thead-dark ">
                                   <tr >
                                     <th>#</th>
                                     <th>title</th>
                                     <th>description</th>
                                     <th>Created At</th>
-                                    <th> Action</th>
+                                    <th>Action</th>
                                     </tr>
                                     </thead>
                            
                                     {this.state.searchRes.length ===0 ?
 
-                                    this.state.listsCong.map(
+                                    slice.map(
                             
-                                    item=>{
+                                    (item,index)=>{
                                         return(
-                                            
                                             <tbody className="table-info">
-
-                                            <tr className="bg-light"  key={item.id}>
+                                            <tr className="bg-light"  key={index}>
                                                 <td>{item.id}</td>
                                                 <td>{item.title}</td>
-                                                <td>{item.description}</td>
+                                                <td>
+                                                <ReadMoreReact text={item.description}
+                                                    min={5}
+                                                    ideal={50}
+                                                    max={100}
+                                                    readMoreText="click here to read more"/>
+                                                </td>
                                                 <td>{item.createdAt}</td>
-                                                <td><button className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)}>Edit</button>
-                                                {' '}
-                                                <button className="btn btn-danger"
-                                                
+                                                <td rowSpan="2">
+                                                    <button className="btn btn-warning"
+                                                     onClick={ () => this.handleUpdate(item.id)}>
+                                                         Edit
+                                                         </button>
+                                                <button className="btn btn-danger" 
                                                 onClick={async () => {
                                                     const result = await Confirm('Are you sure you want to delete this one', 
-                                                      'Delete Сonfirmation ');
-                                                    
+                                                      'Delete Сonfirmation');
                                                     if (result) {
                                                       this.handleDelete(item.id);
-
                                                     } else {
                                                       this.props.history.push(`/congresseslist`);
-
-                                          
-                                                  }
-                                                  }}
-                                                
-                                                >
-                                                       
+                                                  }}} >
                                                     Remove
-                                                    
-                                                    </button></td>
+                                                    </button>
+                                                    </td>
 
                                             </tr>
                                             </tbody>
@@ -240,7 +248,6 @@ export class CongressesList extends Component {
                                         <td>{item.description}</td>
                                         <td>{item.createdAt}</td>
                                         <td><button className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)}>Edit</button>
-                                        {' '}
                                         <button className="btn btn-danger"
                                         
                                         onClick={async () => {
@@ -253,15 +260,10 @@ export class CongressesList extends Component {
                                             
                                             } else {
                                               this.props.history.push(`/congresseslist`);
-                                           
-                                      
-                                          }
+                                           }
                                           }}
-                                        
-                                        >
-                                               
-                                            Remove
-                                            
+                                        >   
+                                            Remove   
                                             </button></td>
 
                                     </tr>
@@ -289,6 +291,9 @@ export class CongressesList extends Component {
       
                                 </div>
 
+    <button className="btn btn-dark d-block w-30 "style={{textAlign:"center" , marginLeft:"45%", marginBottom:'2%'}} onClick ={()=> this.loadMore() }  >
+         Load More
+     </button>
             </div>
             
         )}

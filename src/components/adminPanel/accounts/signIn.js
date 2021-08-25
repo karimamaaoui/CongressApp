@@ -55,28 +55,11 @@ class LoginFormAdmin extends Component {
             }
         }
     }
-  /*  showHide=()=>
-    {
-        if (validation(this.state)) {
-            document.getElementById("load").style.display="inline";
-
-        }
-        else 
-        {
-        document.getElementById("load").style.display="none";
-        }
-    }
-*/
-
-  
+ 
 
 onFormSubmit = event => {
         event.preventDefault();
         if (validation(this.state)) {
-            /*       console.log(this.state)
-        } else {
-            console.log("Error occured");
-        }*/
         const data={
           email:this.state.email,
           password:this.state.password
@@ -199,7 +182,7 @@ onFormSubmit = event => {
 
                      
                     <p >
-                    <Link to='/forgotPassword'>
+                    <Link to='/forgotPasswordAdmin'>
                     Forgot Password     
                     </Link>
                     </p>
@@ -208,7 +191,7 @@ onFormSubmit = event => {
                         <button type="submit" value="submit"  >submit</button>
                     </div>
                                     <br/>
-                    <div className="already">
+                    <div className="alreadyhave">
                     Don't  have  an account  {'   '}        
                     <Link to='/registeradmin'>
                         Register here
