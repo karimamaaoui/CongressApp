@@ -135,12 +135,12 @@ export class UsersList extends Component {
                                 marginLeft:"30%"  ,
                                 width:"20%"
                                     }}>
-                                <FormControl type="text" placeholder="Search "  defaultValue={this.state.search}
+                                <FormControl type="text" placeholder="Search"  defaultValue={this.state.search}
                                     onChange={this.handlefilter}
                                     />
                             </Form>
                             { '  '}
-                            <Link to ="/add">
+                            <Link to ="/adduser">
     
     <button className="btn btn-primary" style={{  padding: "8px 8px",
                                 cursor: "pointer",

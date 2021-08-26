@@ -20,7 +20,7 @@ import SignIn from './adminPanel/accounts/signIn'
 import ForgotPasswordAdmin from './adminPanel/forgotPassword/fogotPasswordAdmin'
 import ForgotEMAdmin from './adminPanel/forgotPassword/forgotPassAdmin';
 import UpdateUser from './adminPanel/users/updateUser'
-
+import AddUser from './adminPanel/users/addUser'
 
 
 const Routes = () => {
@@ -40,6 +40,8 @@ const Routes = () => {
             <Route exact  path='/registeradmin' component={RegisterAdmin} /> 
             
             <Route exact  path='/userslist' component={UsersList} /> 
+            <Route exact  path='/adduser' component={AddUser} /> 
+
             <Route exact  path='/updateuser/:id' component={UpdateUser} /> 
             <Route exact  path='/congresseslist' component={CongressesList} /> 
 
