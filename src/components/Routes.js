@@ -21,6 +21,9 @@ import ForgotPasswordAdmin from './adminPanel/forgotPassword/fogotPasswordAdmin'
 import ForgotEMAdmin from './adminPanel/forgotPassword/forgotPassAdmin';
 import UpdateUser from './adminPanel/users/updateUser'
 import AddUser from './adminPanel/users/addUser'
+import AddSalle from './adminPanel/Salles/addSalle'
+import ListSalle from './adminPanel/Salles/salleList'
+import EditSalle from './adminPanel/Salles/editSalle'
 
 
 const Routes = () => {
@@ -32,6 +35,10 @@ const Routes = () => {
         <div className="route">          
             
             <Switch>
+            <Route exact path="/addsalle" component={AddSalle} />
+            <Route exact path="/sallelists" component={ListSalle} />
+            <Route exact path="/editsalle/:id" component={EditSalle} />
+
 
             <Route exact path="/" component={GetStarted} />
             <Route exact  path='/register' component={Register} />  

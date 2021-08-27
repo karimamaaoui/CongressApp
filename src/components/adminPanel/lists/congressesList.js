@@ -20,7 +20,8 @@ export class CongressesList extends Component {
             congresid:'',
             search:'',
             searchRes:'',
-            noOfElement:5
+            noOfElement:5,
+            salle_id:''
             
         };
     }
@@ -188,7 +189,9 @@ export class CongressesList extends Component {
                                     <th>title</th>
                                     <th>description</th>
                                     <th>Created At</th>
+                                    <th>salle</th>
                                     <th>Action</th>
+                                    <th></th>
                                     </tr>
                                     </thead>
                            
@@ -210,6 +213,7 @@ export class CongressesList extends Component {
                                                     readMoreText="click here to read more"/>
                                                 </td>
                                                 <td>{item.createdAt}</td>
+                                                <td>{item.salle}</td>
                                                 <td rowSpan="2">
                                                     <button className="btn btn-warning"
                                                      onClick={ () => this.handleUpdate(item.id)}>
@@ -247,6 +251,8 @@ export class CongressesList extends Component {
                                         <td>{item.title}</td>
                                         <td>{item.description}</td>
                                         <td>{item.createdAt}</td>
+                                        <td>{item.salle}</td>
+
                                         <td><button className="btn btn-warning" onClick={ () => this.handleUpdate(item.id)}>Edit</button>
                                         <button className="btn btn-danger"
                                         
@@ -272,13 +278,6 @@ export class CongressesList extends Component {
 
                                 )
                             }
-                                                                           
-                                                                           
-                                                                           
-                                                                           
-                                                                           
-                                                                           
-                                                                           
                                                                            
                                                                            ) 
                                                                                   

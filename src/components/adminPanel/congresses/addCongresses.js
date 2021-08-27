@@ -8,9 +8,13 @@ const initialState ={
     title:'',
     description:'',
     createdAt:'',
+    salles:[],
+    salle:'',
     titleError:'',
     descriptionError:'',
     createdAtError:'',
+    salleError:'',
+    names:''
 
   }
   
@@ -31,32 +35,87 @@ export class AddCongresses extends Component {
       
     }
   
+
+    componentDidMount()
+    {
+        const config={
+            headers:{
+                Authorization: 'Bearer ' +localStorage.getItem('token')            }
+                
+            };
+
+
+        axios.get('https://127.0.0.1:8000/api/salles/',config).then(
+            res =>{
+              
+            
+              const datasalle = res.data;
+            const list = datasalle['hydra:member'];
+         
+             this.setState({
+                 salles:list
+             })
+             console.log("list salle",this.state.salles);
+
+            },
+            err=>{
+                console.log(err)
+                
+            }
+
+        )
+
+    }
+
+    handleSelect (id){
+            
+      const config={
+          headers:{
+              Authorization: 'Bearer ' +localStorage.getItem('token')            }
+              
+          };
+          axios.get(`https://127.0.0.1:8000/api/salles/${id}`,config)
+          .then(res => {
+              
+            const datasalle = res.data;
+            const list = datasalle['hydra:member'];
+         
+               }).catch(err=>{
+         
+             
+              console.log(err)
+            })
+          
+      }  
+  
+
     handleSubmit =event=>
     {
       event.preventDefault();
+      
+    const config={
+      headers:{
+          Authorization: 'Bearer ' +localStorage.getItem('token')      
+            
+        }
+              
+      };
 
-        console.log(this.state);
+      
+      
       const data={
         title:this.state.title,
         description:this.state.description,
         createdAt:this.state.createdAt,
-      
+        salle:'/api/salles/'+this.state.names
 
     }
     
     console.log(data)
     
-    const config={
-        headers:{
-            Authorization: 'Bearer ' +localStorage.getItem('token')      
-              
-          }
-                
-        };
-
-        
-        console.log(config)
-        axios.post('https://127.0.0.1:8000/api/congres',data,config)
+    console.log("salle id :",this.state.salle)
+    
+    axios.post('https://127.0.0.1:8000/api/congres',data,config)
         .then(res=>{
             console.log(res.data);
             
@@ -67,6 +126,14 @@ export class AddCongresses extends Component {
             console.log(err)
         })
     
+      }
+      selectState =(e)=>{
+        let name=e.target.name;
+        let value=e.target.value;
+        this.state.names=value;
+    
+        console.log (this.state.names);
+
       }
       
     render() {
@@ -106,18 +173,29 @@ export class AddCongresses extends Component {
                     <div className=" error" > 
                     {this.state.createdAtError}
                     </div>
+                    <div className="col-sm-3">
+                    <label className="mb-2">Select Salle</label>
+                      <select onChange={this.selectState} name="salle" >
+                      {this.state.salles.map(
+                      item=>{ return(
+                        <option value={item.id}>{item.name}</option>
+                        )   }) 
+                      }
+                      </select>
+                    </div>
+           
                     <div className="d-grid mt-3">
                      </div>
                      <button type="submit"  className="btn btn-primary"  id="addbtn"  style={{
 
-                    fontSize:" 1.5em",
-                    marginLeft: "13em",
-                    border:"0px",
-                    cursor: "pointer",
-                    width:"22%",
-                    height:"12%",
-                    textAlign:"center",
-                    backgroundColor:" rgba(155,208,147, 1)"
+                        fontSize:" 1.5em",
+                        marginLeft: "13em",
+                        border:"0px",
+                        cursor: "pointer",
+                        width:"22%",
+                        height:"12%",
+                        textAlign:"center",
+                        backgroundColor:" rgba(155,208,147, 1)"
 
                       }} >
                        Add 
@@ -125,7 +203,8 @@ export class AddCongresses extends Component {
                    
                 </div>
                 </form>
-            </div>
+                
+                       </div>
             
        
             </div>

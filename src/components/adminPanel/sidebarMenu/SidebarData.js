@@ -30,6 +30,12 @@ export const SidebarData =[
         cName: 'nav-text'
     },
 
+    {
+        title:'Salles',
+        path:'/sallelists',
+        icon:<AiIcons.AiFillSchedule/>,
+        cName: 'nav-text'
+    },
     
     {
         title:'Profile',
