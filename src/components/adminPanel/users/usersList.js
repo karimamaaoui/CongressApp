@@ -14,7 +14,8 @@ export class UsersList extends Component {
             currentUserId :'',
             search:'',
             searchRes:'',
-            noOfElement:5
+            noOfElement:5,
+            bookings:[]
 
         };
     }
@@ -29,6 +30,8 @@ export class UsersList extends Component {
                 noOfElement : this.state.noOfElement+this.state.noOfElement
             })
         }
+          
+    
     
         
         handleDelete (id){
@@ -49,6 +52,7 @@ export class UsersList extends Component {
 
                   }).catch(err=>{
                
+
                    
                     console.log(err)
                   })
@@ -77,6 +81,23 @@ export class UsersList extends Component {
                 Authorization: 'Bearer ' +localStorage.getItem('token')            }
                 
             };
+
+            axios.get(`https://127.0.0.1:8000/api/bookings`,config)
+            .then(res => {
+                console.log(res.data);
+                const bookings = res.data['hydra:member'];
+                console.log(bookings)
+             //   const bookings=res.data;
+                this.setState({
+                    bookings
+                });
+              }).catch(err=>{
+           
+               
+                console.log(err)
+              })
+            
+       
         axios.get('https://127.0.0.1:8000/api/users/',config).then(
             res =>{
             const data = res.data;
@@ -273,6 +294,47 @@ export class UsersList extends Component {
          Load More
      </button>
 
+            
+                <div>
+                <table  className="table table-striped table-dark able-responsive-md" >  
+                                <thead className="thead-dark ">
+                                  <tr >
+                                    <th>#</th>
+                                    <th>User</th>
+                                    <th>Congresses</th>
+                                    <th>Created At</th>
+
+                                    </tr>
+                                    </thead>
+                            {
+                                        this.state.bookings.map( 
+
+                                    item=>{
+                                        return(
+                                            
+                                            <tbody className="table-info">
+
+                                            <tr className="bg-light"  key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.user}</td>
+                                                <td>{item.congres}</td>
+                                                <td>{item.createdAt}</td>
+
+
+                                               
+                                               
+                                            </tr>
+                                            </tbody>
+                                            
+
+                                        )
+
+                                    }
+                                )
+                            }
+                            </table>
+                        
+                </div>
             </div>
             
         )}

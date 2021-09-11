@@ -49,7 +49,7 @@ export class AddCongresses extends Component {
             res =>{
               
             
-              const datasalle = res.data;
+            const datasalle = res.data;
             const list = datasalle['hydra:member'];
          
              this.setState({
@@ -175,13 +175,13 @@ export class AddCongresses extends Component {
                     </div>
                     <div className="col-sm-3">
                     <label className="mb-2">Select Salle</label>
-                      <select onChange={this.selectState} name="salle" >
-                      {this.state.salles.map(
-                      item=>{ return(
-                        <option value={item.id}>{item.name}</option>
-                        )   }) 
-                      }
-                      </select>
+                   
+                      <select className="form-control" name="salle"  onChange={this.selectState}  >  
+                                                <option>Salle</option>  
+                                                {this.state.salles.map((item, key) => {  
+                                                        return <option key={key} value={item.id}>{item.name}</option>;  
+                                                })}  
+                                        </select>  
                     </div>
            
                     <div className="d-grid mt-3">

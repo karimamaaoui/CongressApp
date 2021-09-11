@@ -14,7 +14,6 @@ class UpdateProfile extends Component{
             firstName:'',
             lastName:'',
             email:'',          
-            password:'',
             users:[]
         };
     }
@@ -31,10 +30,10 @@ class UpdateProfile extends Component{
 
         return axios.get('https://127.0.0.1:8000/api/users' + '/' + (this.state.id),config).then( (res) =>{
             let users = res.data;
-            this.setState({firstName: users.firstName,
+            this.setState({
+                firstName: users.firstName,
                 lastName: users.lastName,
                 email : users.email,
-                password:users.password
 
             });
         });
@@ -50,9 +49,9 @@ class UpdateProfile extends Component{
                     Authorization: 'Bearer ' +localStorage.getItem('token')            }
                     
                 };
-
-            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,password:this.state.password};
-                
+                console.log(config)
+            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
+            console.log(users)
             return axios.put('https://127.0.0.1:8000/api/users' + '/' + (this.state.id),users,config).then( (res) =>{
              
                 console.log(res.data);
@@ -101,11 +100,7 @@ class UpdateProfile extends Component{
                     <label className="mb-2">email</label>
                     <input type="email" name="email" required defaultValue={this.state.email}  onChange={(e)=>this.setState({email:e.target.value})}/>
              
-                    <label className="mb-2">Password</label>
-
-                <input type="password" required name="password" defaultValue={this.state.password}  onChange={(e)=>this.setState({password:e.target.value})} />
-
-             
+                   
                 </div>
                 </form>
                 </div>
@@ -122,15 +117,6 @@ class UpdateProfile extends Component{
               </div>
               </div>
             
-            
-            
-            
-    
-        
-    
-    
-    
-        
         )
     }
     }

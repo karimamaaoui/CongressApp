@@ -5,7 +5,7 @@ import {Form } from 'react-bootstrap'
 import DateTimePicker from 'react-datetime-picker';
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from  '../sidebarMenu/NavbarMenu';
-
+import './date.css'
 export class EditCongresses extends Component {
     constructor(props) {
         super(props)
@@ -112,16 +112,17 @@ export class EditCongresses extends Component {
 
                     <label className="mb-2">date</label>
                     <br/>
-                    <DateTimePicker value={this.state.createdAt} 
+                    <DateTimePicker value={this.state.createdAt}  style={{display:"flex"}}
                             selected={this.state.createdAt}
                              defaultValue={new Date()}
-                              name="createdAt"
+                            name="createdAt"
                              onChange={(createdAt)=>this.setState({createdAt:createdAt})}
                             className="datepicker"
                 />
                     </Form.Group>
+                    
                     <br/>   
-               
+                    
                       <input type="submit" value="update" className="submit"  style={{
 
                     fontSize:" 1.5em",
@@ -141,9 +142,6 @@ export class EditCongresses extends Component {
                         
                     
                 </p>
-
-
-
                             </div>
 
 
