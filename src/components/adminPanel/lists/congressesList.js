@@ -58,37 +58,22 @@ export class CongressesList extends Component {
               })
             
         }  
-      handleSearch=()=>
-      {
-        
-        console.log("eee",this.state.listsCong)
-        const newlist = this.state.listsCong.filter((item)=>{
-            if(this.state.search == null)
-            
-                return item
-            else if(item.title.toLowerCase().includes(this.state.search.toLowerCase()) || item.description.toLowerCase().includes(this.state.search.toLowerCase())){
-                { console.log("new mlist",newlist)}
-                { console.log(item)}
-
-                return item
-            }
-          })
-     }
-
+     
 
       handlefilter = (e) => {
         this.state.search = e.target.value;
     
         if (this.state.search !== '') {
           const searchRes = this.state.listsCong.filter((item) => {
-            return (item.title.toLowerCase().startsWith(this.state.search.toLowerCase()) || item.description.toLowerCase().startsWith(this.state.search.toLowerCase()));
+            return (item.salle.toLowerCase().startsWith(this.state.search.toLowerCase())||item.createdAt.toLowerCase().startsWith(this.state.search.toLowerCase())||item.title.toLowerCase().startsWith(this.state.search.toLowerCase()) || item.description.toLowerCase().startsWith(this.state.search.toLowerCase()));
             
             // Use the toLowerCase() method to make it case-insensitive
           })
           console.log(searchRes);
 
           this.setState({searchRes})
-        } 
+        }      
+
       };
     
     componentDidMount()
