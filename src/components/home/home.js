@@ -3,6 +3,7 @@ import Navbar from '../home/navbarList';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import{FormControl,Form} from "react-bootstrap";
 
 import ReadMoreReact from 'read-more-react';
 import { Confirm } from 'react-st-modal';
@@ -34,7 +35,9 @@ import { Button } from 'bootstrap';
                 congresid:'',
                 userid:'',
                 noOfElement:3,
-                users:[]
+                users:[],
+                searchRes:'',
+
                 
             };
         }
@@ -163,6 +166,21 @@ import { Button } from 'bootstrap';
         }
 
 
+        handlefilter = (e) => {
+            this.state.search = e.target.value;
+        
+            if (this.state.search !== '') {
+              const searchRes = this.state.listsCong.filter((item) => {
+                return (item.title.toLowerCase().startsWith(this.state.search.toLowerCase())||item.createdAt.toLowerCase().startsWith(this.state.search.toLowerCase())|| item.description.toLowerCase().startsWith(this.state.search.toLowerCase()));
+                
+                console.log("dfdf",this.state.listsCong);
+            })
+              console.log(searchRes);
+    
+              this.setState({searchRes})
+            }      
+    
+          };
         
 
         loadMore =()=>{
@@ -190,8 +208,30 @@ import { Button } from 'bootstrap';
 
                         <div>
                             <h1 style={{fontSize:"3.2em",fontWeight:"900",color:"#4CA1A3"}}> List of Congresses</h1>
+                            {' '}
+                        <br/>
+
+                        <div style={{display:"flex"}} >
+
+                                <Form  style ={{
+
+                                padding: "8px 8px",
+                                cursor: "pointer",
+                                verticalAlign: "middle",
+                                marginLeft:"30%"  ,
+                                width:"20%"
+                                    }}>
+                                <FormControl type="text" placeholder="Search "  defaultValue={this.state.search}
+                                    onChange={this.handlefilter}
+                                    />
+                            </Form>
+                       
+                            </div>
                             <div  style={{display:"flex",flexWrap: "wrap", alignItems: "center",justifyContent: "space-between",padding:"20px"}  }>     
-                            {slice.map(
+                            {
+                            this.state.searchRes.length ===0 ?
+
+                            slice.map(
                              (item,index)=>{
                             
                     return(
@@ -248,7 +288,62 @@ import { Button } from 'bootstrap';
                 </div>
             )
      }
-     )}
+     )
+     :
+     this.state.searchRes.map((item)=> {
+         return(
+             
+            <div   key={item.id}>
+    
+            <MDBCard   style={{ maxWidth: '22rem' ,maxHeight:'40rem'}}>
+
+            <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+                
+                <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.jpg' fluid alt='...' />
+                <MDBCardHeader>Date : {item.createdAt}</MDBCardHeader>
+
+            </MDBRipple>   
+                
+
+
+            <MDBCardBody>
+                <MDBCardTitle>{item.title} </MDBCardTitle>
+                <MDBCardText>
+                <ReadMoreReact text={item.description} 
+                    min={5}
+                    ideal={50}
+                     max={100}
+                     readMoreText="click here to read more"/>
+                </MDBCardText>
+
+
+                <MDBBtn  onClick={async () => {
+                                        const result = await Confirm('Are you sure you want to book this one', 
+                                          'Booking Сonfirmation ');
+                                        
+                                        if (result) {
+                                          this.handleBooking(item.id);
+                                          {console.log("id",item.id)}
+                                          this.props.history.push(`/home`);
+                              
+                                        } else {
+                                          this.props.history.push(`/home`);
+                              
+                                      }
+                                      }}
+                                    
+                                    >
+                                   Book</MDBBtn>
+
+
+
+</MDBCardBody>
+            
+</MDBCard>
+
+    </div>
+         )}
+     )} 
 
   </div>
      <button className="btn btn-dark d-block w-30 "style={{textAlign:"center" , marginLeft:"45%", marginBottom:'2%'}} onClick ={()=> this.loadMore() }  >

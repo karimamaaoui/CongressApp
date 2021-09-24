@@ -14,7 +14,6 @@ class UpdateAdminProfile extends Component{
             lastName:'',
             email:'',
             roles:'',
-            password:'',
             users:[]
         };
     }
@@ -35,7 +34,6 @@ class UpdateAdminProfile extends Component{
                 lastName: users.lastName,
                 email : users.email,
                 roles:users.roles,
-                password:users.password
             });
             console.log(users);
 
@@ -54,7 +52,7 @@ class UpdateAdminProfile extends Component{
                     
                 };
 
-            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,roles:this.state.roles,password:this.state.password};
+            let users = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email,roles:this.state.roles,};
                 
             return axios.put('https://127.0.0.1:8000/api/users' + '/' + (this.state.id),users,config).then( (res) =>{
              
@@ -106,15 +104,10 @@ class UpdateAdminProfile extends Component{
                     <Form.Group className="mb-3" >
 
                     <label className="mb-2">email</label>
-                    <input type="email" name="email" required defaultValue={this.state.email}  onChange={(e)=>this.setState({email:e.target.value})}/>
+                    <input type="email" name="email" required defaultValue={this.state.email} disabled onChange={(e)=>this.setState({email:e.target.value})}/>
                  </Form.Group>
 
-                 <Form.Group className="mb-3" >
-                    <label className="mb-2">Password</label>
-
-                    <input type="password" required name="password" defaultValue={this.state.password}  onChange={(e)=>this.setState({password:e.target.value})} />
-                        </Form.Group>             
-
+               
                  <Form.Group className="mb-3" >
                     <label className="mb-2">Roles</label>
 

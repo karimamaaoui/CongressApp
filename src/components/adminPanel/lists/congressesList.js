@@ -180,7 +180,8 @@ export class CongressesList extends Component {
                                     </tr>
                                     </thead>
                            
-                                    {this.state.searchRes.length ===0 ?
+                                    {
+                                    this.state.searchRes.length ===0 ?
 
                                     slice.map(
                             

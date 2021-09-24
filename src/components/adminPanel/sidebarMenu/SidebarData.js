@@ -36,6 +36,12 @@ export const SidebarData =[
         icon:<AiIcons.AiFillSchedule/>,
         cName: 'nav-text'
     },
+    {
+        title:'Reservations',
+        path:'/sallelists',
+        icon:<AiIcons.AiFillSchedule/>,
+        cName: 'nav-text'
+    },
     
     {
         title:'Profile',

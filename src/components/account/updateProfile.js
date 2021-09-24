@@ -103,7 +103,7 @@ class UpdateProfile extends Component{
                     <Form.Group className="mb-3" >
 
                     <label className="mb-2">email</label>
-                    <input type="email" name="email" required defaultValue={this.state.email}  onChange={(e)=>this.setState({email:e.target.value})}/>
+                    <input type="email" name="email" required defaultValue={this.state.email} disabled="disabled" onChange={(e)=>this.setState({email:e.target.value})}/>
                  </Form.Group>
 
                
