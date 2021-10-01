@@ -10,6 +10,7 @@ import { Confirm } from 'react-st-modal';
 
 import Footer from './Footer'
 import { Button } from 'bootstrap';
+import { Alert } from 'react-bootstrap';
 
   export class Home extends Component {
 
@@ -61,7 +62,10 @@ import { Button } from 'bootstrap';
                 .then(res => {
                     
                   const datacongres = res.data;
-                    console.log(datacongres)
+                    console.log(datacongres);
+                             alert("Added to list of bookings");
+
+           
 
                      }).catch(err=>{
                
@@ -362,6 +366,7 @@ import { Button } from 'bootstrap';
                                         
                                         {this.state.userid=user.id} {user.firstName}</p>
                                 )}})}
+                                {localStorage.setItem('idUserBook',this.state.userid)}
      
      </div>
 

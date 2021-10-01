@@ -24,7 +24,7 @@ import AddUser from './adminPanel/users/addUser'
 import AddSalle from './adminPanel/Salles/addSalle'
 import ListSalle from './adminPanel/Salles/salleList'
 import EditSalle from './adminPanel/Salles/editSalle'
-
+import Booking from './booking/listOfBooking';
 
 const Routes = () => {
     
@@ -69,6 +69,8 @@ const Routes = () => {
             <Route exact  path='/forgotPasswordAdmin' component={ForgotEMAdmin}/> 
             <Route exact  path='/reset-password-admin/:id' component={ForgotPasswordAdmin}/> 
 
+
+            <Route exact  path='/book' component={Booking}/>   
             <Route exact  path='/*' component={NoRouteFound}/>  
             </Switch>
         </div>
