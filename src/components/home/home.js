@@ -247,7 +247,7 @@ import { Alert } from 'react-bootstrap';
      
                         <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
                             
-                            <MDBCardImage src='https://mdbcdn.b-cdn.net/img/new/standard/nature/111.jpg' fluid alt='...' />
+                            <MDBCardImage src='https://www.medicalevents.tn/wp-content/uploads/2021/02/MEDICALEVENTS-SQUARE-LOGO-Transparent-27-02-2021.png' width="100%" fluid alt='...' />
                             <MDBCardHeader>Date : {item.createdAt}</MDBCardHeader>
 
                         </MDBRipple>   
