@@ -7,6 +7,7 @@ import { Confirm } from 'react-st-modal';
 import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Alert } from 'react-bootstrap';
 import Footer from '../home/Footer'
+import ReactStars from "react-rating-stars-component";
 
 export class listOfBooking extends Component {
     constructor(props) {
@@ -14,9 +15,42 @@ export class listOfBooking extends Component {
         this.state = {
           bookings:[],
           congressesList:[],
-          salleList:[]
+          salleList:[],
+          stars:'',
         };
     }
+
+    ratingChanged = (stars) => {
+        console.log(stars);
+        this.setState({
+            stars
+        });
+       
+       // this.state.stars=newRating;        
+      };
+
+    handleStars (id){
+        const config={
+            headers:{
+                Authorization: 'Bearer ' +localStorage.getItem('token')            }
+                
+            };
+            console.log("stars",this.state.stars)
+
+
+        let booking = {stars: this.state.stars};
+            
+        return axios.put(`https://127.0.0.1:8000/api/bookings/${id}`,booking,config).then( (res) =>{
+         
+            console.log(res.data);
+
+           
+            
+        }) .catch(err=>{
+            console.log(err)
+        })
+    
+    }  
 
     handleDelete (id){
                 
@@ -156,7 +190,25 @@ export class listOfBooking extends Component {
                                                         <MDBCardText>
                                                         Congresses Title :  {congresItem.title}
                                                         </MDBCardText>
-                                                                    
+                                                        <MDBCardText>
+                                                        <div>
+                                                        <ReactStars
+                                                            name="stars"
+                                                            count={5}
+                                                            onChange={this.ratingChanged}
+                                                            size={24}
+                                                            activeColor="#ffd700"
+                                                            isHalf={true}
+                                                            emptyIcon={<i className="far fa-star"></i>}
+                                                            halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                                            fullIcon={<i className="fa fa-star"></i>}
+                                                            onClick={this.handleStars(item.id)}
+                                                        />
+                                                        </div>
+                                                        {console.log(this.state.stars)}
+
+                                                        </MDBCardText>
+
                                                         <MDBBtn 
                                                          onClick={async () => {
                                                             const result = await Confirm('Are you sure you want to remove this one', 
@@ -191,7 +243,8 @@ export class listOfBooking extends Component {
                                  </div>)
                                 }
                                 )
-                                }                </div>
+                                }                                                                           
+                                </div>
 
 <Footer id="footer" className="footer"/>
               
