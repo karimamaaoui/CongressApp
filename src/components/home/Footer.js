@@ -3,8 +3,42 @@ import './home.css';
 import * as Fi from "react-icons/fi"
 import * as Fa from "react-icons/fa"
 import * as Ai from "react-icons/ai"
+import emailjs from "emailjs-com"
 
+import React, { useState } from 'react'
+
+const Result =()=>{
+    return(
+        <p> Your message has been successfuly sent.
+            I will contact you soon
+        </p>
+    )
+
+}
 const Footer =()=>{
+    const [result,showResult]=useState(false);
+
+   
+
+    function  sendEmail(e){
+        e.preventDefault();
+
+        emailjs.sendForm("service_4s1ox4k",
+                        "template_8hz021h",
+                        e.target,
+                        "user_nuPaqXlThnJOHdw2jfR6h"
+                        ).then(res=>{
+                            console.log(res);
+                        }).catch (err=> console.log(err)
+                        );
+
+                        e.target.reset();
+                        showResult(true);
+    };
+    setTimeout(()=>{
+        showResult(false)
+    },5000)
+
     return(
         <footer>
             <div className="main-content">
@@ -63,12 +97,12 @@ const Footer =()=>{
                 <div className="center box">
                     <h2>Contact</h2>
                     <div className="content">
-                        <form>
-                            <div className="email">
+                        <form onSubmit={sendEmail}>
+                            <div className="email" name="email">
                             <div className="text">
                                 Email*
                             </div>
-                            <input  type="email" required />
+                            <input  type="email" className="email" name="email" required />
                             </div>
 
 
@@ -77,13 +111,17 @@ const Footer =()=>{
                             <div className="text">
                                 Message*
                             </div>
-                            <textarea  cols="25" rows="2" required >
+                            <textarea  cols="25" rows="2" required className="msg" name="msg">
                             </textarea>
                             </div>
                             <div className="btn">
                                 <button type="submit" style={{ borderRadius:"12px" ,width:"100px",  background: "#0568c1"}}>Send</button>
                             </div>
-
+                            <div>
+                              {
+                                  result ? <Result/> : null   
+                                 }  
+                            </div>
                         </form>
                      </div>
 
