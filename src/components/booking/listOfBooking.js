@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import Navbar from '../home/navbarList';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import './listOfBooking.css'
 import { Confirm } from 'react-st-modal';
 import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Alert } from 'react-bootstrap';
 import Footer from '../home/Footer'
-import ReactStars from "react-rating-stars-component";
+import Swal from 'sweetalert2'
 
 export class listOfBooking extends Component {
     constructor(props) {
@@ -16,42 +15,10 @@ export class listOfBooking extends Component {
           bookings:[],
           congressesList:[],
           salleList:[],
-          stars:'',
         };
     }
 
-    ratingChanged = (stars) => {
-        console.log(stars);
-        this.setState({
-            stars
-        });
-       
-       // this.state.stars=newRating;        
-      };
-
-    handleStars (id){
-        const config={
-            headers:{
-                Authorization: 'Bearer ' +localStorage.getItem('token')            }
-                
-            };
-            console.log("stars",this.state.stars)
-
-
-        let booking = {stars: this.state.stars};
-            
-        return axios.put(`https://127.0.0.1:8000/api/bookings/${id}`,booking,config).then( (res) =>{
-         
-            console.log(res.data);
-
-           
-            
-        }) .catch(err=>{
-            console.log(err)
-        })
-    
-    }  
-
+  
     handleDelete (id){
                 
         const config={
@@ -61,12 +28,18 @@ export class listOfBooking extends Component {
             };
             axios.delete(`https://127.0.0.1:8000/api/bookings/${id}`,config)
             .then(res => {
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Reservation Removed  Successfully ",
+                    icon: 'warning',
+                    button:"OK!"
+                  });
+           
                 console.log(res.data);
                 const bookings=this.state.bookings.filter(item =>item.id !==id);
                 this.setState({
                     bookings
                 });
-                alert("remove element")
                  
               }).catch(err=>{
            
@@ -191,22 +164,7 @@ export class listOfBooking extends Component {
                                                         Congresses Title :  {congresItem.title}
                                                         </MDBCardText>
                                                         <MDBCardText>
-                                                        <div>
-                                                        <ReactStars
-                                                            name="stars"
-                                                            count={5}
-                                                            onChange={this.ratingChanged}
-                                                            size={24}
-                                                            activeColor="#ffd700"
-                                                            isHalf={true}
-                                                            emptyIcon={<i className="far fa-star"></i>}
-                                                            halfIcon={<i className="fa fa-star-half-alt"></i>}
-                                                            fullIcon={<i className="fa fa-star"></i>}
-                                                            onClick={this.handleStars(item.id)}
-                                                        />
-                                                        </div>
-                                                        {console.log(this.state.stars)}
-
+                                                   
                                                         </MDBCardText>
 
                                                         <MDBBtn 

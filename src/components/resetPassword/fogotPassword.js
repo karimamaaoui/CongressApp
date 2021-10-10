@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { Component } from 'react'
 import './reset.css'
+import Swal from 'sweetalert2'
+
+
 export class FogotPassword extends Component {
+
     constructor(props) {
         super(props)
         
@@ -38,6 +42,13 @@ export class FogotPassword extends Component {
                 this.setState({
                    newPassword: res.data
                 })
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Password Changed  Successfully ",
+                    icon: 'warning',
+                    button:"OK!"
+                  });
+           
                 this.props.history.push('/login');
 
             }) .catch(err=>{

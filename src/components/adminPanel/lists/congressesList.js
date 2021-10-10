@@ -5,6 +5,7 @@ import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import './main.css'
 import ReadMoreReact from 'read-more-react';
+import Swal from 'sweetalert2'
 
 import{FormControl,Form} from "react-bootstrap";
 
@@ -44,6 +45,14 @@ export class CongressesList extends Component {
             };
             axios.delete(`https://127.0.0.1:8000/api/congres/${id}`,config)
             .then(res => {
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Congresses Removed  Successfully ",
+                    icon: 'warning',
+                    button:"OK!"
+                  });
+           
+              
                 console.log(res.data);
                 const lists=this.state.lists.filter(item =>item.id !==id);
                 this.setState({

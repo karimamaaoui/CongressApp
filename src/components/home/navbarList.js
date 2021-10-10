@@ -45,6 +45,7 @@ class NavbarList extends Component {
                             <Nav.Link href="#footer"  onClick={window.scrollTo(0,1200)}>About Us</Nav.Link >
                             <Nav.Link  href="/home" >Congresses</Nav.Link >
                             <Nav.Link  href="/book" >Booking</Nav.Link >
+                            <Nav.Link  href="/feedback" >Feedback</Nav.Link >
     
                             </Nav>
                             <Nav>

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import './resetPassAdmin.css'
 import * as Gi from "react-icons/gi";
+import Swal from 'sweetalert2'
+
 
 export class FogotPasswordAdmin extends Component {
     constructor(props) {
@@ -40,6 +42,13 @@ export class FogotPasswordAdmin extends Component {
                 this.setState({
                    newPassword: res.data
                 })
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Password Changed  Successfully ",
+                    icon: 'warning',
+                    button:"OK!"
+                  });
+           
                 this.props.history.push('/loginadmin');
 
             }) .catch(err=>{

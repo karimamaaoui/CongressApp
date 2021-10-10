@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import{FormControl,Form} from "react-bootstrap";
+import Swal from 'sweetalert2'
 
 
 export class UsersList extends Component {
@@ -43,6 +44,14 @@ export class UsersList extends Component {
                 };
                 axios.delete(`https://127.0.0.1:8000/api/users/${id}`,config)
                 .then(res => {
+                    Swal.fire({
+                        title: "Warning!",
+                        text: "User Removed  Successfully ",
+                        icon: 'warning',
+                        button:"OK!"
+                      });
+               
+                  
                     console.log(res.data);
                     const lists=this.state.lists.filter(item =>item.id !==id);
                     this.setState({

@@ -4,6 +4,7 @@ import '../account/form.css';
 import {Link} from 'react-router-dom';
 //import { Alert } from "bootstrap";
 import { MDBSpinner } from 'mdb-react-ui-kit';
+import Swal from 'sweetalert2'
 
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
@@ -74,10 +75,6 @@ class LoginForm extends Component {
 onFormSubmit = event => {
         event.preventDefault();
         if (validation(this.state)) {
-            /*       console.log(this.state)
-        } else {
-            console.log("Error occured");
-        }*/
         const data={
           email:this.state.email,
           password:this.state.password
@@ -85,6 +82,7 @@ onFormSubmit = event => {
       console.log(data)
       axios.post('https://127.0.0.1:8000/api/login',data)
           .then(res=>{
+              
               console.log(res.data);
              localStorage.setItem('token',res.data.token);
             
@@ -120,8 +118,15 @@ onFormSubmit = event => {
           })
           .catch(err=>{
            
-            alert("email or password invalid please try again");
+            //alert("email or password invalid please try again");
            
+            Swal.fire({
+                title: "Error!",
+                text: "Email Or Password Is Invalid Please Try Again",
+                icon: 'error',
+                button:"OK!"
+              });
+       
             console.log(err)
           })
   

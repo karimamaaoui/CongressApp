@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
@@ -44,6 +45,13 @@ export class salleList extends Component {
             };
             axios.delete(`https://127.0.0.1:8000/api/salles/${id}`,config)
             .then(res => {
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Salle Removed  Successfully ",
+                    icon: 'warning',
+                    button:"OK!"
+                  });
+           
                 console.log(res.data);
                 const salles=this.state.salles.filter(item =>item.id !==id);
                 this.setState({

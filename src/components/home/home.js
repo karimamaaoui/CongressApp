@@ -11,6 +11,7 @@ import { Confirm } from 'react-st-modal';
 import Footer from './Footer'
 import { Button } from 'bootstrap';
 import { Alert } from 'react-bootstrap';
+import Swal from 'sweetalert2'
 
   export class Home extends Component {
 
@@ -63,7 +64,6 @@ import { Alert } from 'react-bootstrap';
                     
                   const datacongres = res.data;
                     console.log(datacongres);
-                             alert("Added to list of bookings");
 
            
 
@@ -84,6 +84,13 @@ import { Alert } from 'react-bootstrap';
                         
                 axios.post(`https://127.0.0.1:8000/api/bookings`,data,config)
                 .then(res => {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Reservation Added Successfully ",
+                        icon: 'success',
+                        button:"OK!"
+                      });
+                
                     console.log(res.data);
                 }).catch(err=>{
                     console.log(err)

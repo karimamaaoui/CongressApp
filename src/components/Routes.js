@@ -25,6 +25,7 @@ import AddSalle from './adminPanel/Salles/addSalle'
 import ListSalle from './adminPanel/Salles/salleList'
 import EditSalle from './adminPanel/Salles/editSalle'
 import Booking from './booking/listOfBooking';
+import Feedback from './feedback/feedback';
 
 const Routes = () => {
     
@@ -39,6 +40,7 @@ const Routes = () => {
             <Route exact path="/sallelists" component={ListSalle} />
             <Route exact path="/editsalle/:id" component={EditSalle} />
 
+            <Route exact path="/feedback" component={Feedback} />
 
             <Route exact path="/" component={GetStarted} />
             <Route exact  path='/register' component={Register} />  

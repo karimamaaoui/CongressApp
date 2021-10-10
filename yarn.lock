@@ -8092,6 +8092,37 @@
   "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
   "version" "4.17.21"
 
+"lodash._baseflatten@^3.0.0":
+  "integrity" "sha1-B3D/gBMa9uNPO1EXlqe6UhTmX/c="
+  "resolved" "https://registry.npmjs.org/lodash._baseflatten/-/lodash._baseflatten-3.1.4.tgz"
+  "version" "3.1.4"
+  dependencies:
+    "lodash.isarguments" "^3.0.0"
+    "lodash.isarray" "^3.0.0"
+
+"lodash._basefor@^3.0.0":
+  "integrity" "sha1-dVC06SGO8J+tJDQ7YSAhx5tMIMI="
+  "resolved" "https://registry.npmjs.org/lodash._basefor/-/lodash._basefor-3.0.3.tgz"
+  "version" "3.0.3"
+
+"lodash._bindcallback@^3.0.0":
+  "integrity" "sha1-5THCdkTPi1epnhftlbNcdIeJOS4="
+  "resolved" "https://registry.npmjs.org/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz"
+  "version" "3.0.1"
+
+"lodash._pickbyarray@^3.0.0":
+  "integrity" "sha1-H4mNlgfrVgsOFnOEt3x8bRCKpMU="
+  "resolved" "https://registry.npmjs.org/lodash._pickbyarray/-/lodash._pickbyarray-3.0.2.tgz"
+  "version" "3.0.2"
+
+"lodash._pickbycallback@^3.0.0":
+  "integrity" "sha1-/2G5oBens699MObFPeKK+hm4dQo="
+  "resolved" "https://registry.npmjs.org/lodash._pickbycallback/-/lodash._pickbycallback-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "lodash._basefor" "^3.0.0"
+    "lodash.keysin" "^3.0.0"
+
 "lodash._reinterpolate@^3.0.0":
   "integrity" "sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0="
   "resolved" "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
@@ -8107,10 +8138,33 @@
   "resolved" "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
   "version" "4.4.2"
 
+"lodash.isarguments@^3.0.0":
+  "integrity" "sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo="
+  "resolved" "https://registry.npmjs.org/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz"
+  "version" "3.1.0"
+
+"lodash.isarray@^3.0.0":
+  "integrity" "sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U="
+  "resolved" "https://registry.npmjs.org/lodash.isarray/-/lodash.isarray-3.0.4.tgz"
+  "version" "3.0.4"
+
 "lodash.isequalwith@^4.4.0":
   "integrity" "sha1-Jmcm3dUo+FTyH06pigZWBuD7xrA="
   "resolved" "https://registry.npmjs.org/lodash.isequalwith/-/lodash.isequalwith-4.4.0.tgz"
   "version" "4.4.0"
+
+"lodash.isfunction@^3.0.6":
+  "integrity" "sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw=="
+  "resolved" "https://registry.npmjs.org/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz"
+  "version" "3.0.9"
+
+"lodash.keysin@^3.0.0":
+  "integrity" "sha1-IsRJPrvtsUJ5YqVLRFssinZ/tH8="
+  "resolved" "https://registry.npmjs.org/lodash.keysin/-/lodash.keysin-3.0.8.tgz"
+  "version" "3.0.8"
+  dependencies:
+    "lodash.isarguments" "^3.0.0"
+    "lodash.isarray" "^3.0.0"
 
 "lodash.memoize@^4.1.2":
   "integrity" "sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4="
@@ -8121,6 +8175,22 @@
   "integrity" "sha1-DdOXEhPHxW34gJd9UEyI+0cal6w="
   "resolved" "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz"
   "version" "4.1.1"
+
+"lodash.pick@^3.1.0":
+  "integrity" "sha1-8lKoVbIEa2G805BLJvdr0u/GVVA="
+  "resolved" "https://registry.npmjs.org/lodash.pick/-/lodash.pick-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "lodash._baseflatten" "^3.0.0"
+    "lodash._bindcallback" "^3.0.0"
+    "lodash._pickbyarray" "^3.0.0"
+    "lodash._pickbycallback" "^3.0.0"
+    "lodash.restparam" "^3.0.0"
+
+"lodash.restparam@^3.0.0":
+  "integrity" "sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU="
+  "resolved" "https://registry.npmjs.org/lodash.restparam/-/lodash.restparam-3.6.1.tgz"
+  "version" "3.6.1"
 
 "lodash.sortby@^4.7.0":
   "integrity" "sha1-7dFMgk4sycHgsKG0K7UhBRakJDg="
@@ -10962,6 +11032,16 @@
   "resolved" "https://registry.npmjs.org/react-st-modal/-/react-st-modal-1.1.3.tgz"
   "version" "1.1.3"
 
+"react-swal@^3.0.0":
+  "integrity" "sha512-iia1GjipLrwWxVhxrn8EW4He6RwFMJG25t3a7plonFsZVO9egTyNLWQ4+4fjzi4iUOcEU0VVnOTw7fqJx0cXZA=="
+  "resolved" "https://registry.npmjs.org/react-swal/-/react-swal-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "lodash.isfunction" "^3.0.6"
+    "lodash.pick" "^3.1.0"
+    "prop-types" "^15.6.0"
+    "sweetalert" "^1.0.1"
+
 "react-text-mask@^5.4.3":
   "integrity" "sha1-mR77QpnjDC5sLEbRP2FxaUY+DS0="
   "resolved" "https://registry.npmjs.org/react-text-mask/-/react-text-mask-5.4.3.tgz"
@@ -12551,6 +12631,16 @@
     "stable" "^0.1.8"
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
+
+"sweetalert@^1.0.1", "sweetalert@^1.1.3":
+  "integrity" "sha1-0sMepJKyK2qNiHrqFZiaI4/AhK4="
+  "resolved" "https://registry.npmjs.org/sweetalert/-/sweetalert-1.1.3.tgz"
+  "version" "1.1.3"
+
+"sweetalert2@^11.1.7":
+  "integrity" "sha512-7MHQVtKCTORfA9e58g9ZOfT3X58DkSBtvoCQJnqSHobXXb5C7aB8Yg/tAccTFnefCUBU41PoStjXMkzG3bNeig=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.1.7.tgz"
+  "version" "11.1.7"
 
 "symbol-observable@^1.0.4", "symbol-observable@^1.1.0", "symbol-observable@1.2.0":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="

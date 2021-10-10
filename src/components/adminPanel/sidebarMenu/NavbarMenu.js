@@ -48,8 +48,9 @@ function NavbarMenu() {
                     {' '}
                 </span>
                       <div className="mail">
+                       <a href="https://mail.google.com/mail">   
                       <AiIcons.AiOutlineMail/>
-
+                        </a>
                       </div>
 
                 <span>

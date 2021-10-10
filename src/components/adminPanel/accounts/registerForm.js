@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 //import {Alert} from 'react-bootstrap';
 import Contact from '../../assets/contact.jpg';
+import Swal from 'sweetalert2'
 
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
@@ -72,15 +73,25 @@ class RegisterFormAdmin extends Component {
              localStorage.setItem('token',res.data.token);
              
 
-             alert("Create account succesful");
+             Swal.fire({
+                title: "Success!",
+                text: "Account Created Successfully ",
+                icon: 'success',
+                button:"OK!"
+            });
               this.props.history.push('/loginadmin');
               
           localStorage.setItem('useradmin',JSON.stringify(data));
          
           })
           .catch(err=>{
-            alert("ERROR email already exists ");
-
+            Swal.fire({
+                title: "Error!",
+                text: "Email already exists",
+                icon: 'error',
+                button:"OK!"
+              });
+       
               console.log(err)
           })
   
