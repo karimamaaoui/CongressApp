@@ -46,11 +46,13 @@ export class UsersList extends Component {
                 .then(res => {
                     Swal.fire({
                         title: "Warning!",
-                        text: "User Removed  Successfully ",
+                        text: "Congresses Removed  Successfully ",
                         icon: 'warning',
                         button:"OK!"
                       });
                
+                  
+            
                   
                     console.log(res.data);
                     const lists=this.state.lists.filter(item =>item.id !==id);
@@ -304,47 +306,7 @@ export class UsersList extends Component {
      </button>
 
             
-                <div>
-                <table  className="table table-striped table-dark able-responsive-md" >  
-                                <thead className="thead-dark ">
-                                  <tr >
-                                    <th>#</th>
-                                    <th>User</th>
-                                    <th>Congresses</th>
-                                    <th>Created At</th>
-
-                                    </tr>
-                                    </thead>
-                            {
-                                        this.state.bookings.map( 
-
-                                    item=>{
-                                        return(
-                                            
-                                            <tbody className="table-info">
-
-                                            <tr className="bg-light"  key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.user}</td>
-                                                <td>{item.congres}</td>
-                                                <td>{item.createdAt}</td>
-
-
-                                               
-                                               
-                                            </tr>
-                                            </tbody>
-                                            
-
-                                        )
-
-                                    }
-                                )
-                            }
-                            </table>
-                        
-                </div>
-            </div>
+                    </div>
             
         )}
     }

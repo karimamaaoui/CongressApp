@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { MDBSpinner } from 'mdb-react-ui-kit';
 import './sign.css';
 import Contact from '../../assets/contact.jpg';
+import Swal from 'sweetalert2'
 
 const regularExpression = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)
 
@@ -97,8 +98,14 @@ onFormSubmit = event => {
           })
           .catch(err=>{
            
-            alert("email or password invalid please try again");
-           
+            //alert("email or password invalid please try again");
+            Swal.fire({
+                title: "Error!",
+                text: "Email Or Password Is Invalid Please Try Again",
+                icon: 'error',
+                button:"OK!"
+              });
+         
             console.log(err)
           })
   

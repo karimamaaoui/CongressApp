@@ -26,6 +26,8 @@ import ListSalle from './adminPanel/Salles/salleList'
 import EditSalle from './adminPanel/Salles/editSalle'
 import Booking from './booking/listOfBooking';
 import Feedback from './feedback/feedback';
+import Bookings from './adminPanel/reservation/reservation'
+import FeedList from './adminPanel/avis/usersFeedback'
 
 const Routes = () => {
     
@@ -36,6 +38,11 @@ const Routes = () => {
         <div className="route">          
             
             <Switch>
+            
+            <Route exact path="/bookingslist" component={Bookings} />
+            <Route exact path="/feedbacklists" component={FeedList} />
+
+
             <Route exact path="/addsalle" component={AddSalle} />
             <Route exact path="/sallelists" component={ListSalle} />
             <Route exact path="/editsalle/:id" component={EditSalle} />

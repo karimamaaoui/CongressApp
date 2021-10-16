@@ -38,7 +38,15 @@ export const SidebarData =[
     },
     {
         title:'Reservations',
-        path:'/sallelists',
+        path:'/bookingslist',
+        icon:<AiIcons.AiFillSchedule/>,
+        cName: 'nav-text'
+    },
+
+    
+    {
+        title:'Feedback',
+        path:'/feedbacklists',
         icon:<AiIcons.AiFillSchedule/>,
         cName: 'nav-text'
     },
