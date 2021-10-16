@@ -1,9 +1,9 @@
 import React from 'react'
-import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import * as FcIcons from "react-icons/fc"
+import * as GiIcons from "react-icons/gi" 
+import * as CgIcons from "react-icons/cg" 
 
- 
 
 export const SidebarData =[
 
@@ -18,7 +18,7 @@ export const SidebarData =[
     {
         title:'Users',
         path:'/userslist',
-        icon:<AiIcons.AiFillProject/>,
+        icon:<AiIcons.AiOutlineUsergroupAdd/>,
         cName: 'nav-text'
     },
 
@@ -26,20 +26,20 @@ export const SidebarData =[
     {
         title:'Congresses',
         path:'/congresseslist',
-        icon:<AiIcons.AiFillSchedule/>,
+        icon:<GiIcons.GiCongress/>,
         cName: 'nav-text'
     },
 
     {
         title:'Salles',
         path:'/sallelists',
-        icon:<AiIcons.AiFillSchedule/>,
+        icon:<GiIcons.GiDoor/>,
         cName: 'nav-text'
     },
     {
         title:'Reservations',
         path:'/bookingslist',
-        icon:<AiIcons.AiFillSchedule/>,
+        icon:<AiIcons.AiOutlineIdcard/>,
         cName: 'nav-text'
     },
 
@@ -47,14 +47,14 @@ export const SidebarData =[
     {
         title:'Feedback',
         path:'/feedbacklists',
-        icon:<AiIcons.AiFillSchedule/>,
+        icon:<AiIcons.AiOutlineMail/>,
         cName: 'nav-text'
     },
     
     {
         title:'Profile',
         path:'/adminprofile',
-        icon:<AiIcons.AiFillProfile/>,
+        icon:<CgIcons.CgProfile/>,
         cName: 'nav-text'
     },
 ]

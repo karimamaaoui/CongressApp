@@ -2,6 +2,7 @@ import React ,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import * as FcIcons from "react-icons/fc"
 import {SidebarData} from './SidebarData';
 import './sidebar.css';
 import {IconContext} from 'react-icons';
@@ -49,8 +50,8 @@ function NavbarMenu() {
                 </span>
                       <div className="mail">
                        <a href="https://mail.google.com/mail">   
-                      <AiIcons.AiOutlineMail/>
-                        </a>
+                       <FcIcons.FcFeedback/>                        
+                       </a>
                       </div>
 
                 <span>
