@@ -6,7 +6,7 @@ import { Confirm } from 'react-st-modal';
 import './main.css'
 import ReadMoreReact from 'read-more-react';
 import Swal from 'sweetalert2'
-
+import { CSVLink } from "react-csv";
 import{FormControl,Form} from "react-bootstrap";
 
 
@@ -169,6 +169,17 @@ export class CongressesList extends Component {
     <br/>
 
     </Link>
+    <CSVLink
+            style={{  padding: "8px 8px",
+            verticalAlign: "middle",
+            marginLeft:"10%"  ,
+            }}
+                data={this.state.listsCong}
+                filename={"congresses-list.csv"}
+                className="btn btn-success"
+                >
+                Export To CSV
+            </CSVLink>
     
                                 </div>
        

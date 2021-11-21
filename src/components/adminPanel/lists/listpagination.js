@@ -1,4 +1,4 @@
-import  React,{Component} from 'react';
+/*import  React,{Component} from 'react';
 import { DataGrid  } from '@material-ui/data-grid';
 import axios from 'axios';
 import { Confirm } from 'react-st-modal';
@@ -128,7 +128,7 @@ const columns = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 */
-  class DataTable extends Component {
+/*  class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -279,3 +279,4 @@ const columns = [
 }
 
 export default DataTable
+*/

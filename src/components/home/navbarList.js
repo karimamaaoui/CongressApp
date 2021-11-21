@@ -1,11 +1,8 @@
-//import React from 'react';
-import{FormControl, Navbar ,Nav,Form, Button} from "react-bootstrap";
+import{ Navbar ,Nav} from "react-bootstrap";
 import './home.css';
 import {Redirect} from 'react-router-dom';
 import React, { Component } from 'react'
-//import { Alert } from "bootstrap";
 import axios from 'axios';
-import Footer from './Footer'
 
 
 class NavbarList extends Component {

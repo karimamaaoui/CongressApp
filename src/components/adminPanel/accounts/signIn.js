@@ -30,14 +30,13 @@ const validation = ({ error, ...rest }) => {
 
     return checkValidation;
 };
-
-const 
- Spinner = () => (
+/*
+const Spinner = () => (
     <div className="spinner">
          <MDBSpinner size='sm' role='status' tag='span' className='me-2' />
 
     </div>
-  );
+  );*/
 class LoginFormAdmin extends Component {
 
     constructor(props) {

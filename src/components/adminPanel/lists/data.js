@@ -1,4 +1,4 @@
-import React, { Component ,useState } from 'react'
+/*import React, { Component ,useState } from 'react'
 import axios from 'axios'
 
 export default function DataBase() 
@@ -34,3 +34,4 @@ export default function DataBase()
     }    
 
 
+*/

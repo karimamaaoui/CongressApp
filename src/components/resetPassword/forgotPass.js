@@ -10,8 +10,6 @@ export class forgotPass extends Component {
       this.handleChange=this.handleChange.bind(this);
 
     this.state = {
-        // retrieve congresses id from the route
-      //   id: this.props.match.params.id,
          email:'',
          id:'',
          lists:[]
@@ -54,9 +52,9 @@ export class forgotPass extends Component {
     render() {
      
      
-        const emails=window.localStorage.getItem('listOfUsers');
+    //    const emails=window.localStorage.getItem('listOfUsers');
 
-        const emailuser = JSON.parse(emails);
+      //  const emailuser = JSON.parse(emails);
       
     //    let id;
         return (

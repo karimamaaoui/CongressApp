@@ -1,3 +1,4 @@
+
 import { Route,BrowserRouter ,Switch} from 'react-router-dom';
 import React  from 'react'
 import GetStarted from './startApp/getStarted';
@@ -13,7 +14,7 @@ import ForgotPassword from './resetPassword/fogotPassword';
 import ForgotEM from './resetPassword/forgotPass';
 import RegisterAdmin from './adminPanel/accounts/registerForm';
 import UsersList from './adminPanel/users/usersList';
-import CongressesList from './adminPanel/lists/congressesList';
+import CongressesList from './adminPanel/congresses/congressesList';
 import AdminProfile from './adminPanel/profile/adminProfile'
 import EditAdmin from './adminPanel/profile//updateProfile'
 import SignIn from './adminPanel/accounts/signIn'

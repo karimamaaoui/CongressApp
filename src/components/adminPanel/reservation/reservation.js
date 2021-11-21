@@ -5,6 +5,8 @@ import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import{FormControl,Form} from "react-bootstrap";
 import Swal from 'sweetalert2'
+import { CSVLink } from "react-csv";
+
 
 export class reservation extends Component {
     constructor(props) {
@@ -167,6 +169,18 @@ export class reservation extends Component {
                                     />
                             </Form>
                             { '  '}
+                            
+            <CSVLink
+            style={{  padding: "8px 8px",
+            verticalAlign: "middle",
+            marginLeft:"10%"  ,
+            }}
+                data={this.state.bookings}
+                filename={"bookings-list.csv"}
+                className="btn btn-success"
+                >
+                Export To CSV
+            </CSVLink>
     
                                 </div>
        

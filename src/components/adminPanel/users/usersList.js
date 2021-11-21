@@ -5,6 +5,7 @@ import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import{FormControl,Form} from "react-bootstrap";
 import Swal from 'sweetalert2'
+import { CSVLink } from "react-csv";
 
 
 export class UsersList extends Component {
@@ -46,7 +47,7 @@ export class UsersList extends Component {
                 .then(res => {
                     Swal.fire({
                         title: "Warning!",
-                        text: "Congresses Removed  Successfully ",
+                        text: "User Removed  Successfully ",
                         icon: 'warning',
                         button:"OK!"
                       });
@@ -76,8 +77,8 @@ export class UsersList extends Component {
                   const searchRes = this.state.lists.filter((item) => {
                     return (item.email.toLowerCase().startsWith(this.state.search.toLowerCase())||item.firstName.toLowerCase().startsWith(this.state.search.toLowerCase())||item.lastName.toLowerCase().startsWith(this.state.search.toLowerCase()));
                     
-                    // Use the toLowerCase() method to make it case-insensitive
-                  })
+                    // nhout toLowerCase() 
+                   })
                   console.log(searchRes);
         
                   this.setState({searchRes})
@@ -87,12 +88,13 @@ export class UsersList extends Component {
     
     componentDidMount()
     {
+        //token hadha
         const config={
             headers:{
                 Authorization: 'Bearer ' +localStorage.getItem('token')            }
                 
             };
-
+            
             axios.get(`https://127.0.0.1:8000/api/bookings`,config)
             .then(res => {
                 console.log(res.data);
@@ -183,6 +185,17 @@ export class UsersList extends Component {
     <br/>
 
     </Link>
+            <CSVLink
+            style={{  padding: "8px 8px",
+            verticalAlign: "middle",
+            marginLeft:"10%"  ,
+            }}
+                data={this.state.lists}
+                filename={"users-list.csv"}
+                className="btn btn-success"
+                >
+                Export To CSV
+            </CSVLink>
     
                                 </div>
        

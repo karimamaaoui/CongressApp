@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import Navbar from '../home/navbarList';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
 import{FormControl,Form} from "react-bootstrap";
 
 import ReadMoreReact from 'read-more-react';
 import { Confirm } from 'react-st-modal';
 
 import Footer from './Footer'
-import { Button } from 'bootstrap';
-import { Alert } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 
   export class Home extends Component {

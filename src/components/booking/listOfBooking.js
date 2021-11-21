@@ -3,8 +3,7 @@ import Navbar from '../home/navbarList';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Confirm } from 'react-st-modal';
-import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText,MDBCardFooter, MDBCardImage, MDBBtn, MDBRipple,MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import { Alert } from 'react-bootstrap';
+import { MDBCard, MDBCardBody, MDBCardTitle,MDBCardHeader, MDBCardText, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
 import Footer from '../home/Footer'
 import Swal from 'sweetalert2'
 
@@ -106,8 +105,10 @@ export class listOfBooking extends Component {
     render() {  
         
     const userId=window.localStorage.getItem('idUserBook');
+    const emails=window.localStorage.getItem('users');
+    const emailuser = JSON.parse(emails);
 
-    if(!userId )
+    if(!emails || !userId)
     {
         return <h1>  error  you should login <button ><Link to="/login"> Login </Link></button> </h1>
     }

@@ -1,4 +1,3 @@
-import { Link } from '@material-ui/core';
 import './home.css';
 import * as Fi from "react-icons/fi"
 import * as Fa from "react-icons/fa"

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import Navbar from  '../sidebarMenu/NavbarMenu';
 import { Confirm } from 'react-st-modal';
 import{FormControl,Form} from "react-bootstrap";
+import { CSVLink } from "react-csv";
 
 
 export class salleList extends Component {
@@ -162,7 +163,19 @@ export class salleList extends Component {
                                 <br/>
 
                                 </Link>
-
+                                
+      
+                                <CSVLink
+            style={{  padding: "8px 8px",
+            verticalAlign: "middle",
+            marginLeft:"10%"  ,
+            }}
+                data={this.state.salles}
+                filename={"salles-list.csv"}
+                className="btn btn-success"
+                >
+                Export To CSV
+            </CSVLink>
                                 </div>
 
                                 <br/>
